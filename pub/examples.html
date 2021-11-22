@@ -14,20 +14,54 @@
 
     <body>
         <img src="js/resources/title.jpg" alt="Loading picture..." style="width: 100%"/>
-        <h3 style="text-align: center">
-            Flip each of the following card to make sure you are familiar with the growing cycle!
-        </h3>
-        <div id="cardCycle"></div>
+
+        <div>
+            <h3 style="text-align: center">
+                Flip each of the following card to make sure you are familiar with the growing cycle!
+            </h3>
+            <div id="cardCycle"></div>
+            <div style="text-align: center">
+                <button type="button" id="flip-cards-on" style="border: none; color: white; padding: 15px 32px;
+                                           font-size: 16px;margin: 4px 2px;cursor: pointer;background-color: #A7BD8B">
+                    Enable Flip
+                </button>
+                <button type="button" id="flip-cards-off" style="border: none; color: white; padding: 15px 32px;
+                                           font-size: 16px;margin: 4px 2px;cursor: pointer;background-color: #A7BD8B">
+                    Disable Flip</button>
+            </div>
+        </div>
+
         <div style="display: flex; flex-direction: row">
-            <div id="timelineCycle" style="width: 50%">
+            <div style="width: 50%">
                 <h3 style="text-align: center">
                     Hover over each section of the timeline to check out the description!
                 </h3>
+                <div id="timelineCycle"></div>
+                <div style="text-align: center; margin-top: 20px">
+                    <button type="button" id="hover-timeline-on" style="border: none; color: white; padding: 15px 32px;
+                                           font-size: 16px;margin: 4px 2px;cursor: pointer;background-color: #A7BD8B">
+                        Enable Hover
+                    </button>
+                    <button type="button" id="hover-timeline-off" style="border: none; color: white; padding: 15px 32px;
+                                           font-size: 16px;margin: 4px 2px;cursor: pointer;background-color: #A7BD8B">
+                        Disable Hover</button>
+                </div>
             </div>
-            <div id="frameCycle" style="margin-left: auto; margin-right: auto">
+
+            <div style="margin-left: auto; margin-right: auto">
                 <h3 style="text-align: center">
                     Flip each of the following frame to see the title!
                 </h3>
+                <div id="frameCycle"></div>
+                <div style="text-align: center; margin-top: 20px">
+                    <button type="button" id="flip-frames-on" style="border: none; color: white; padding: 15px 32px;
+                                           font-size: 16px;margin: 4px 2px;cursor: pointer;background-color: #A7BD8B">
+                        Enable Flip
+                    </button>
+                    <button type="button" id="flip-frames-off" style="border: none; color: white; padding: 15px 32px;
+                                           font-size: 16px;margin: 4px 2px;cursor: pointer;background-color: #A7BD8B">
+                        Disable Flip</button>
+                </div>
             </div>
         </div>
     </body>

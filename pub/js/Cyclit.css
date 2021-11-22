@@ -145,28 +145,28 @@
     box-sizing: border-box;
 }
 
-.section-holder .hover-holder {
+.holder .hover-holder {
     position: absolute;
     top: 100px;
     left: 30px;
     visibility: hidden;
 }
 
-.section-holder:hover .hover-holder{
+.holder:hover .hover-holder{
     width: 100%;
     height: fit-content;
     border: 3px solid #A7BD8B;
     visibility: visible;
 }
 
-.section-holder .hover-cover {
+.holder .hover-cover {
     position: absolute;
     top: 0;
     left: 0;
     visibility: hidden;
 }
 
-.section-holder:hover .hover-cover {
+.holder:hover .hover-cover {
     width: 100%;
     height: 100%;
     background: #C4C4C4;

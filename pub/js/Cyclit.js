@@ -22,15 +22,48 @@ CyclitGenerator.prototype = {
     turnOnFlip: function(e){
         if(e.classList.contains('default-cards-holder')){
             flipCardsOn(this.cards);
+            for(let i = 0; i < this.cards.length; i++){
+                this.cards[i].flippable = true;
+            }
         }
         else if(e.classList.contains('page-holder')){
             flipFramesOn(this.frames);
+            for(let i = 0; i < this.frames.length; i++){
+                this.frames[i].flippable = true;
+            }
+        }
+    },
+
+    turnOffFlip: function(e) {
+        if(e.classList.contains('default-cards-holder')){
+            flipCardsOff(this.cards);
+            for(let i = 0; i < this.cards.length; i++){
+                this.cards[i].flippable = false;
+            }
+        }
+        else if(e.classList.contains('page-holder')){
+            flipFramesOff(this.frames);
+            for(let i = 0; i < this.frames.length; i++){
+                this.frames[i].flippable = false;
+            }
         }
     },
 
     turnOnHover: function(e){
         if(e.classList.contains('timeline-holder')){
             hoverTimelineOn(this.timelineSecs)
+            for(let i = 0; i < this.timelineSecs.length; i++){
+                this.timelineSecs[i].flippable = false;
+            }
+        }
+    },
+
+    turnOffHover: function(e) {
+        if(e.classList.contains('timeline-holder')){
+            hoverTimelineOff(this.timelineSecs)
+            for(let i = 0; i < this.timelineSecs.length; i++){
+                this.timelineSecs[i].flippable = true;
+            }
         }
     },
 
@@ -56,6 +89,7 @@ CyclitGenerator.prototype = {
 class Card {
     constructor(cover) {
         this.cover = cover;
+        this.flippable = false;
     }
 }
 
@@ -64,6 +98,7 @@ class TimelineSection {
         this.cover = cover;
         this.title = title;
         this.content = content;
+        this.flippable = false;
     }
 }
 
@@ -72,6 +107,7 @@ class Frame {
         this.cover = cover;
         this.title = title;
         this.content = content;
+        this.flippable = false;
     }
 }
 
@@ -88,18 +124,21 @@ function createCards(cards){
         const cardHolder = document.createElement('div');
         const card = document.createElement('div');
         const cardFront = document.createElement('div');
+        const cardBack = document.createElement('div');
         const imgHolder = document.createElement('img');
 
 
         imgHolder.setAttribute('src', cards[i].cover);
         imgHolder.className = 'img-card';
         cardFront.className = 'card-face';
+        cardBack.className = 'card-face card-face-back';
         card.className = 'card';
         cardHolder.className = 'card-holder';
 
-        cardFront.append(imgHolder);
+        cardFront.appendChild(imgHolder);
         card.appendChild(cardFront);
-        cardHolder.append(card);
+        card.appendChild(cardBack);
+        cardHolder.appendChild(card);
 
         newCardsHolder.appendChild(cardHolder);
     }
@@ -111,6 +150,10 @@ function createCards(cards){
 
 /* Turn the flipping option of cards on */
 function flipCardsOn(cards) {
+    if(cards[0].flippable) {
+        return;
+    }
+
     const cardsHolder = document.querySelector('#default-cards-holder');
 
     for(let i = 0; i < cards.length; i++){
@@ -129,14 +172,31 @@ function flipCardsOn(cards) {
         cardHolder.appendChild(hoverMessageHolder);
 
         // Add flipping feature
-        const cardBack = document.createElement('div');
-
-        cardBack.className = 'card-face card-face-back';
         card.addEventListener( 'click', function() {
             card.classList.toggle('is-flipped');
         });
+    }
+}
 
-        card.appendChild(cardBack);
+
+/* Turn the flipping option of cards off */
+function flipCardsOff(cards) {
+    if(!cards[0].flippable) {
+        return;
+    }
+
+    const cardsHolder = document.querySelector('#default-cards-holder');
+
+    for(let i = 0; i < cards.length; i++){
+        const cardHolder = cardsHolder.children[i]
+        const card = cardHolder.children[0];
+
+        // Remove hovering message
+        cardHolder.removeChild(cardHolder.children[1])
+        // Remove flipping function
+        card.addEventListener( 'click', function() {
+            card.classList.remove('is-flipped');
+        });
     }
 }
 
@@ -179,6 +239,10 @@ function createTimeline(sections){
 
 /* Turn the hovering option of timeline on */
 function hoverTimelineOn(sections) {
+    if(sections[0].flippable){
+        return
+    }
+
     const timelineHolder = document.querySelector('#timeline-holder');
 
     for(let i = 0; i < sections.length; i++){
@@ -197,6 +261,7 @@ function hoverTimelineOn(sections) {
         hoverImageHolder.className = 'hover-image-holder';
         hoverHolder.className = 'hover-holder';
         hoverImage.setAttribute('src', sections[i].cover)
+        sectionHolder.classList.add('holder')
 
         hoverContent.appendChild(document.createTextNode(sections[i].content));
         hoverContentHolder.appendChild(hoverContent);
@@ -206,6 +271,25 @@ function hoverTimelineOn(sections) {
 
         sectionHolder.appendChild(hoverCover);
         sectionHolder.appendChild(hoverHolder);
+
+        console.log(sectionHolder.classList)
+    }
+}
+
+/* Turn the hovering option of timeline off */
+function hoverTimelineOff(sections) {
+    if(!sections[0].flippable){
+        return
+    }
+
+    const timelineHolder = document.querySelector('#timeline-holder');
+
+    for(let i = 0; i < sections.length; i++){
+        const sectionHolder = timelineHolder.children[i].children[0];
+
+        sectionHolder.classList.remove('holder');
+        sectionHolder.removeChild(sectionHolder.children[3]);
+        sectionHolder.removeChild(sectionHolder.children[2]);
     }
 }
 
@@ -225,6 +309,8 @@ function createFrames(frames){
             const frameHolder = document.createElement('div');
             const frame = document.createElement('div');
             const frameFront = document.createElement('div');
+            const frameBack = document.createElement('div');
+            const title = document.createElement('h3');
             const imgHolder = document.createElement('div');
             const img = document.createElement('img');
             const contentHolder = document.createElement('div');
@@ -233,6 +319,8 @@ function createFrames(frames){
             imgHolder.className = 'img-holder-frame';
             contentHolder.className = 'content-holder';
             frameFront.className = 'frame-face';
+            title.className = 'title-frame';
+            frameBack.className = 'frame-face frame-face-back';
             frame.className = 'frame';
             frameHolder.className = 'frame-holder'
 
@@ -240,7 +328,10 @@ function createFrames(frames){
             contentHolder.appendChild(document.createTextNode(frames[track].content));
             frameFront.appendChild(imgHolder);
             frameFront.appendChild(contentHolder);
+            title.appendChild(document.createTextNode(frames[i].title));
+            frameBack.appendChild(title);
             frame.appendChild(frameFront);
+            frame.appendChild(frameBack);
             frameHolder.appendChild(frame);
             columnHolder.appendChild(frameHolder);
 
@@ -258,6 +349,10 @@ function createFrames(frames){
 
 /* Turn the flipping option of frame cycle on */
 function flipFramesOn(frames) {
+    if(frames[0].flippable){
+        return;
+    }
+
     const pageHolder = document.querySelector('#page-holder');
 
     for(let i = 0; i < frames.length; i++){
@@ -281,17 +376,35 @@ function flipFramesOn(frames) {
         frameHolder.appendChild(hoverMessageHolder);
 
         // Add flipping feature
-        const frameBack = document.createElement('div');
-        const title = document.createElement('h3');
-
-        title.className = 'title-frame';
-        frameBack.className = 'frame-face frame-face-back';
         frame.addEventListener( 'click', function() {
             frame.classList.toggle('is-flipped');
         });
+    }
+}
 
-        title.appendChild(document.createTextNode(frames[i].title));
-        frameBack.appendChild(title);
-        frame.appendChild(frameBack);
+/* Turn the flipping option of frames off */
+function flipFramesOff(frames) {
+    if(!frames[0].flippable) {
+        return;
+    }
+
+    const pageHolder = document.querySelector('#page-holder');
+
+    for(let i = 0; i < frames.length; i++){
+        let frameHolder;
+        if(i % 2 === 0){
+            frameHolder = pageHolder.children[0].children[Math.floor(i/2)]
+        }else {
+            frameHolder = pageHolder.children[1].children[Math.floor(i/2)]
+        }
+        const frame = frameHolder.children[0]
+
+        // Remove hover message
+        frameHolder.removeChild(frameHolder.children[1]);
+
+        // Remove flipping feature
+        frame.addEventListener( 'click', function() {
+            frame.classList.remove('is-flipped');
+        });
     }
 }
