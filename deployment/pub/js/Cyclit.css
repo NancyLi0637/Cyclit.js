@@ -1,0 +1,287 @@
+.default-cards-holder {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    margin: auto;
+}
+
+.card-holder {
+    width: 20%;
+    height: 250px;
+    border: 1px solid #A7BD8B;
+    border-radius: 20px;
+    margin: 20px;
+    perspective: 1000px;
+}
+
+.card-holder .hover-message-holder {
+    position: absolute;
+    bottom: 10px;
+    right: -20px;
+    visibility: hidden;
+}
+
+.card-holder:hover .hover-message-holder{
+    width: 100px;
+    height: 30px;
+    background: #C4C4C4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: visible;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.card.is-flipped {
+    transform: rotateY( 180deg );
+}
+
+
+.card-face {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    text-align: center;
+    -webkit-backface-visibility: hidden;
+    border-radius: 20px;
+}
+
+.card-face-back {
+    background: #A7BD8B;
+    border: 1px solid #A7BD8B;
+    border-radius: 20px;
+    transform: rotateY( 180deg );
+}
+
+.img-card {
+    border-radius: 20px;
+}
+
+
+.timeline-holder {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.timeline-holder::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    background-color: #A7BD8B;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+}
+
+.container {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: fit-content;
+    box-sizing: border-box;
+}
+
+.left {
+    left: 10%;
+}
+
+.right {
+    left: 50%;
+}
+
+.left::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    right: 30px;
+    border: solid;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent #A7BD8B;
+}
+
+.right::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    left: 30px;
+    border: solid;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent #A7BD8B transparent transparent;
+}
+
+.right::after {
+    left: -16px;
+}
+
+.section-holder {
+    width: 100%;
+    padding: 20px 30px;
+    border-style: solid;
+    border-color: #A7BD8B;
+    position: relative;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.section-holder .hover-holder {
+    position: absolute;
+    top: 100px;
+    left: 30px;
+    visibility: hidden;
+}
+
+.section-holder:hover .hover-holder{
+    width: 100%;
+    height: fit-content;
+    border: 3px solid #A7BD8B;
+    visibility: visible;
+}
+
+.section-holder .hover-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+}
+
+.section-holder:hover .hover-cover {
+    width: 100%;
+    height: 100%;
+    background: #C4C4C4;
+    opacity: 0.5;
+    visibility: visible;
+}
+
+.hover-image-holder {
+    text-align: center;
+}
+
+.hover-image {
+    width: 100%;
+}
+
+.hover-content-holder {
+    margin: 10px;
+}
+
+
+.img-timeline {
+    width: 100%;
+}
+
+.title-holder {
+   text-align: center;
+}
+
+.page-holder {
+    width: fit-content;
+    height: fit-content;
+    max-height: 1000px;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.column-holder {
+    width: fit-content;
+    height: fit-content;
+}
+
+.frame-holder {
+    width: 250px;
+    height: 300px;
+    border: 2px solid #A7BD8B;
+    perspective: 1000px;
+
+}
+
+.frame-holder .hover-message-holder {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    visibility: hidden;
+}
+
+.frame-holder:hover .hover-message-holder{
+    width: 100px;
+    height: 30px;
+    background: #C4C4C4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: visible;
+}
+
+.frame {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.frame.is-flipped {
+    transform: rotateY( 180deg );
+}
+
+.frame-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.frame-face-back {
+    background: #A7BD8B;
+    border: 1px solid #A7BD8B;
+    transform: rotateY( 180deg );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-holder-frame {
+    width: 100%;
+    max-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-holder {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.title-frame {
+    color: white;
+}
+
+
+
+
+
