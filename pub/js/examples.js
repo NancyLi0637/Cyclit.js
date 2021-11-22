@@ -2,7 +2,8 @@
 
 const cycleGenerator = new CyclitGenerator();
 
-const images = ['resources/pic1.jpg', 'resources/pic2.jpg', 'resources/pic3.jpg', 'resources/pic4.jpg', 'resources/pic5.jpg']
+const images = ["js/resources/pic1.jpg", 'js/resources/pic2.jpg', 'js/resources/pic3.jpg', 'js/resources/pic4.jpg',
+    'js/resources/pic5.jpg']
 const titles = ['Baby Tree', 'Infant Tree', 'Child Tree', 'Teenage Tree', 'Adult Tree']
 const contents = []
 
