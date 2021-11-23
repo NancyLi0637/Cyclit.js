@@ -49,6 +49,14 @@ CyclitGenerator.prototype = {
         }
     },
 
+    makeTimeline: function(images, n, titles, contents) {
+        for(let i = 0; i < n; i++){
+            const newSection = new TimelineSection(images[i], titles[i], contents[i]);
+            this.timelineSecs.push(newSection);
+        }
+        return createTimeline(this.timelineSecs);
+    },
+
     turnOnHover: function(e){
         if(e.classList.contains('timeline-holder')){
             hoverTimelineOn(this.timelineSecs)
@@ -65,14 +73,6 @@ CyclitGenerator.prototype = {
                 this.timelineSecs[i].flippable = true;
             }
         }
-    },
-
-    makeTimeline: function(images, n, titles, contents) {
-        for(let i = 0; i < n; i++){
-            const newSection = new TimelineSection(images[i], titles[i], contents[i]);
-            this.timelineSecs.push(newSection);
-        }
-        return createTimeline(this.timelineSecs);
     },
 
     makeFrames: function(images, n, titles, contents){
