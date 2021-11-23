@@ -102,7 +102,7 @@ hint message on hover will be added to each of the instances. On disable, the el
 ## Future Implementation
 
 ### Cycle Type
-I still one more cycle type to implement which is the circle cycle. This cycle will have a circle of circles with 
+I still have one more cycle type to implement which is the circle cycle. This cycle will have a circle of circles with 
 corresponding cover and content.
 ### Cycle Interaction
 In addition to flipping and hovering, I also want to implement a dragging/reordering feature for the cycles for more 
