@@ -10,6 +10,19 @@
         <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script defer type="text/javascript" src='js/Cyclit.js'></script>
         <script defer type="text/javascript" src='js/examples.js'></script>
+
+        <style>
+            button {
+                border-radius: 20px;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                background-color: #A7BD8B
+            }
+        </style>
     </head>
 
     <body>
@@ -21,12 +34,10 @@
             </h3>
             <div id="cardCycle"></div>
             <div style="text-align: center">
-                <button type="button" id="flip-cards-on" style="border: none; color: white; padding: 15px 32px;
-                                           font-size: 16px;margin: 4px 2px;cursor: pointer;background-color: #A7BD8B">
+                <button type="button" id="flip-cards-on">
                     Enable Flip
                 </button>
-                <button type="button" id="flip-cards-off" style="border: none; color: white; padding: 15px 32px;
-                                           font-size: 16px;margin: 4px 2px;cursor: pointer;background-color: #A7BD8B">
+                <button type="button" id="flip-cards-off">
                     Disable Flip</button>
             </div>
         </div>
@@ -38,12 +49,10 @@
                 </h3>
                 <div id="timelineCycle"></div>
                 <div style="text-align: center; margin-top: 20px">
-                    <button type="button" id="hover-timeline-on" style="border: none; color: white; padding: 15px 32px;
-                                           font-size: 16px;margin: 4px 2px;cursor: pointer;background-color: #A7BD8B">
+                    <button type="button" id="hover-timeline-on" >
                         Enable Hover
                     </button>
-                    <button type="button" id="hover-timeline-off" style="border: none; color: white; padding: 15px 32px;
-                                           font-size: 16px;margin: 4px 2px;cursor: pointer;background-color: #A7BD8B">
+                    <button type="button" id="hover-timeline-off">
                         Disable Hover</button>
                 </div>
             </div>
@@ -54,12 +63,10 @@
                 </h3>
                 <div id="frameCycle"></div>
                 <div style="text-align: center; margin-top: 20px">
-                    <button type="button" id="flip-frames-on" style="border: none; color: white; padding: 15px 32px;
-                                           font-size: 16px;margin: 4px 2px;cursor: pointer;background-color: #A7BD8B">
+                    <button type="button" id="flip-frames-on">
                         Enable Flip
                     </button>
-                    <button type="button" id="flip-frames-off" style="border: none; color: white; padding: 15px 32px;
-                                           font-size: 16px;margin: 4px 2px;cursor: pointer;background-color: #A7BD8B">
+                    <button type="button" id="flip-frames-off">
                         Disable Flip</button>
                 </div>
             </div>
