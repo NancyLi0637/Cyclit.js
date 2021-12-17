@@ -1,6 +1,8 @@
 .default-cards-holder {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
     width: 70%;
     margin: auto;
 }
@@ -69,6 +71,7 @@
 
 .img-card {
     border-radius: 20px;
+    width: 100%;
 }
 
 
@@ -156,6 +159,8 @@
     width: 100%;
     height: fit-content;
     border: 3px solid #A7BD8B;
+    background-color: white;
+    z-index: 9;
     visibility: visible;
 }
 
@@ -212,8 +217,10 @@
 .frame-holder {
     width: 250px;
     height: 300px;
-    border: 2px solid #A7BD8B;
     perspective: 1000px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: transparent grey grey transparent;
 
 }
 
@@ -253,11 +260,11 @@
     height: 100%;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    background-color: #A7BD8B;
 }
 
 .frame-face-back {
     background: #A7BD8B;
-    border: 1px solid #A7BD8B;
     transform: rotateY( 180deg );
     display: flex;
     justify-content: center;
@@ -270,6 +277,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.img-frame {
+    margin-top: 5px;
 }
 
 .content-holder {

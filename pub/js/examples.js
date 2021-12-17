@@ -3,14 +3,14 @@
 const cycleGenerator = new CyclitGenerator();
 
 const images = ["js/resources/pic1.jpg", 'js/resources/pic2.jpg', 'js/resources/pic3.jpg', 'js/resources/pic4.jpg',
-    'js/resources/pic5.jpg']
-const titles = ['Baby Tree', 'Infant Tree', 'Child Tree', 'Teenage Tree', 'Adult Tree']
+    'js/resources/pic5.jpg','js/resources/pic5.jpg','js/resources/pic5.jpg']
+const titles = ['Baby Tree', 'Infant Tree', 'Child Tree', 'Teenage Tree', 'Adult Tree','Adult Tree','Adult Tree']
 const contents = []
 
 function createContents(){
     for(let i = 0; i < images.length; i++){
         contents.push("Lorem Ipsum is simply dummy text of the printing and types. Lorem Ipsum has been the industry's " +
-            "standard dummy text ever since the 1500s.");
+            "standard dummy text ever since the 1500s.Lorem Ipsum is simply dummy.");
     }
 }
 createContents();
@@ -35,11 +35,23 @@ disableCardFlip.addEventListener('click', function(){
     cycleGenerator.turnOffFlip(cards);
 })
 
+const flipCardsAll = document.querySelector('#flip-all-cards');
+flipCardsAll.addEventListener('click', function(){
+    // Turn the flipping option of card cycle off
+    cycleGenerator.flipAll(cards);
+})
+
+const resetCardsAll = document.querySelector('#reset-cards');
+resetCardsAll.addEventListener('click', function(){
+    // Turn the flipping option of card cycle off
+    cycleGenerator.resetAll(cards);
+})
+
 ///////////////////////////////////////////////
 
 // Create a Timeline-Cycle //
 const timelineCycle = document.querySelector('#timelineCycle');
-const timeline = cycleGenerator.makeTimeline(images, 5, titles, contents);
+const timeline = cycleGenerator.makeTimeline(images, 7, titles, contents);
 timelineCycle.appendChild(timeline);
 
 // Add event listener for buttons
@@ -73,4 +85,16 @@ const disableFrameFlip = document.querySelector('#flip-frames-off');
 disableFrameFlip.addEventListener('click', function(){
     // Turn the flipping option of frame cycle off
     cycleGenerator.turnOffFlip(frames);
+})
+
+const flipFramesAll = document.querySelector('#flip-all-frames');
+flipFramesAll.addEventListener('click', function(){
+    // Turn the flipping option of frame cycle off
+    cycleGenerator.flipAll(frames);
+})
+
+const resetFramesAll = document.querySelector('#reset-frames');
+resetFramesAll.addEventListener('click', function(){
+    // Turn the flipping option of frame cycle off
+    cycleGenerator.resetAll(frames);
 })

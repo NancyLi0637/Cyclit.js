@@ -49,6 +49,22 @@ CyclitGenerator.prototype = {
         }
     },
 
+    flipAll: function(e){
+        if(e.classList.contains('default-cards-holder')){
+            flipAllCards(this.cards);
+        }else if(e.classList.contains('page-holder')){
+            flipAllFrames(this.frames);
+        }
+    },
+
+    resetAll: function(e){
+        if(e.classList.contains('default-cards-holder')){
+            resetCards(this.cards);
+        }else if(e.classList.contains('page-holder')){
+            resetFrames(this.frames);
+        }
+    },
+
     makeTimeline: function(images, n, titles, contents) {
         for(let i = 0; i < n; i++){
             const newSection = new TimelineSection(images[i], titles[i], contents[i]);
@@ -61,7 +77,7 @@ CyclitGenerator.prototype = {
         if(e.classList.contains('timeline-holder')){
             hoverTimelineOn(this.timelineSecs)
             for(let i = 0; i < this.timelineSecs.length; i++){
-                this.timelineSecs[i].flippable = false;
+                this.timelineSecs[i].hoverable = false;
             }
         }
     },
@@ -70,7 +86,7 @@ CyclitGenerator.prototype = {
         if(e.classList.contains('timeline-holder')){
             hoverTimelineOff(this.timelineSecs)
             for(let i = 0; i < this.timelineSecs.length; i++){
-                this.timelineSecs[i].flippable = true;
+                this.timelineSecs[i].hoverable = true;
             }
         }
     },
@@ -90,6 +106,7 @@ class Card {
     constructor(cover) {
         this.cover = cover;
         this.flippable = false;
+        this.flipped = false;
     }
 }
 
@@ -98,7 +115,7 @@ class TimelineSection {
         this.cover = cover;
         this.title = title;
         this.content = content;
-        this.flippable = false;
+        this.hoverable = false;
     }
 }
 
@@ -108,6 +125,7 @@ class Frame {
         this.title = title;
         this.content = content;
         this.flippable = false;
+        this.flipped = false;
     }
 }
 
@@ -174,6 +192,13 @@ function flipCardsOn(cards) {
         // Add flipping feature
         card.addEventListener( 'click', function() {
             card.classList.toggle('is-flipped');
+
+            // Set card property based on flip
+            if(cards[i].flipped){
+                cards[i].flipped = false;
+            }else{
+                cards[i].flipped = true;
+            }
         });
     }
 }
@@ -196,7 +221,42 @@ function flipCardsOff(cards) {
         // Remove flipping function
         card.addEventListener( 'click', function() {
             card.classList.remove('is-flipped');
+
+            // Set card property based on flip
+            if(cards[i].flipped){
+                cards[i].flipped = false;
+            }else{
+                cards[i].flipped = true;
+            }
         });
+    }
+}
+
+/* Flip all the cards at once */
+function flipAllCards(cards) {
+    const cardsHolder = document.querySelector('#default-cards-holder');
+
+    for(let i = 0; i < cards.length; i++){
+        const cardHolder = cardsHolder.children[i]
+        const card = cardHolder.children[0];
+
+        card.classList.toggle('is-flipped');
+        cards[i].flipped = !cards[i].flipped;
+    }
+}
+
+/* Reset all flipped cards to card front */
+function resetCards(cards) {
+    const cardsHolder = document.querySelector('#default-cards-holder');
+
+    for(let i = 0; i < cards.length; i++){
+        const cardHolder = cardsHolder.children[i]
+        const card = cardHolder.children[0];
+
+        if(cards[i].flipped){
+            card.classList.toggle('is-flipped');
+            cards[i].flipped = false;
+        }
     }
 }
 
@@ -239,7 +299,7 @@ function createTimeline(sections){
 
 /* Turn the hovering option of timeline on */
 function hoverTimelineOn(sections) {
-    if(sections[0].flippable){
+    if(sections[0].hoverable){
         return
     }
 
@@ -271,14 +331,13 @@ function hoverTimelineOn(sections) {
 
         sectionHolder.appendChild(hoverCover);
         sectionHolder.appendChild(hoverHolder);
-
-        console.log(sectionHolder.classList)
+        
     }
 }
 
 /* Turn the hovering option of timeline off */
 function hoverTimelineOff(sections) {
-    if(!sections[0].flippable){
+    if(!sections[0].hoverable){
         return
     }
 
@@ -287,9 +346,9 @@ function hoverTimelineOff(sections) {
     for(let i = 0; i < sections.length; i++){
         const sectionHolder = timelineHolder.children[i].children[0];
 
-        sectionHolder.classList.remove('holder');
         sectionHolder.removeChild(sectionHolder.children[3]);
         sectionHolder.removeChild(sectionHolder.children[2]);
+        sectionHolder.classList.remove('holder');
     }
 }
 
@@ -316,6 +375,7 @@ function createFrames(frames){
             const contentHolder = document.createElement('div');
 
             img.setAttribute('src', frames[track].cover);
+            img.className = 'img-frame';
             imgHolder.className = 'img-holder-frame';
             contentHolder.className = 'content-holder';
             frameFront.className = 'frame-face';
@@ -378,6 +438,13 @@ function flipFramesOn(frames) {
         // Add flipping feature
         frame.addEventListener( 'click', function() {
             frame.classList.toggle('is-flipped');
+
+            // Set frame property based on flip
+            if(frames[i].flipped){
+                frames[i].flipped = false;
+            }else{
+                frames[i].flipped = true;
+            }
         });
     }
 }
@@ -405,6 +472,53 @@ function flipFramesOff(frames) {
         // Remove flipping feature
         frame.addEventListener( 'click', function() {
             frame.classList.remove('is-flipped');
+
+            // Set frame property based on flip
+            if(frames[i].flipped){
+                frames[i].flipped = false;
+            }else{
+                frames[i].flipped = true;
+            }
         });
+    }
+}
+
+/* Flip all the frames at once */
+function flipAllFrames(frames) {
+
+    const pageHolder = document.querySelector('#page-holder');
+
+    for(let i = 0; i < frames.length; i++){
+        let frameHolder;
+        if(i % 2 === 0){
+            frameHolder = pageHolder.children[0].children[Math.floor(i/2)]
+        }else {
+            frameHolder = pageHolder.children[1].children[Math.floor(i/2)]
+        }
+        const frame = frameHolder.children[0]
+
+        frame.classList.toggle('is-flipped');
+        frames[i].flipped = !frames[i].flipped;
+    }
+}
+
+/* Reset all flipped frames to frame front */
+function resetFrames(frames) {
+
+    const pageHolder = document.querySelector('#page-holder');
+
+    for(let i = 0; i < frames.length; i++){
+        let frameHolder;
+        if(i % 2 === 0){
+            frameHolder = pageHolder.children[0].children[Math.floor(i/2)]
+        }else {
+            frameHolder = pageHolder.children[1].children[Math.floor(i/2)]
+        }
+        const frame = frameHolder.children[0]
+
+        if(frames[i].flipped){
+            frame.classList.toggle('is-flipped');
+            frames[i].flipped = false;
+        }
     }
 }
