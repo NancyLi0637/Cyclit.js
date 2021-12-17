@@ -5,15 +5,26 @@ const cycleGenerator = new CyclitGenerator();
 const images = ["js/resources/pic1.jpg", 'js/resources/pic2.jpg', 'js/resources/pic3.jpg', 'js/resources/pic4.jpg',
     'js/resources/pic5.jpg','js/resources/pic5.jpg','js/resources/pic5.jpg']
 const titles = ['Baby Tree', 'Infant Tree', 'Child Tree', 'Teenage Tree', 'Adult Tree','Adult Tree','Adult Tree']
-const contents = []
+const timelineContents = []
+const frameContents = []
 
-function createContents(){
+function createTimelineContents(){
     for(let i = 0; i < images.length; i++){
-        contents.push("Lorem Ipsum is simply dummy text of the printing and types. Lorem Ipsum has been the industry's " +
+        timelineContents.push("Lorem Ipsum is simply dummy text of the printing and types. Lorem Ipsum has been the industry's " +
+            "standard dummy text ever since the 1500s.Lorem Ipsum is simply dummy. Lorem Ipsum has been the industry's " +
             "standard dummy text ever since the 1500s.Lorem Ipsum is simply dummy.");
     }
 }
-createContents();
+
+function createFrameContents(){
+    for(let i = 0; i < images.length; i++){
+        frameContents.push("Lorem Ipsum is simply dummy text of the printing and types. Lorem Ipsum has been the industry's " +
+            "standard dummy text ever since the 1500s.Lorem Ipsum is simply dummy.");
+    }
+}
+
+createTimelineContents();
+createFrameContents();
 
 ///////////////////////////////////////////////
 
@@ -51,7 +62,7 @@ resetCardsAll.addEventListener('click', function(){
 
 // Create a Timeline-Cycle //
 const timelineCycle = document.querySelector('#timelineCycle');
-const timeline = cycleGenerator.makeTimeline(images, 7, titles, contents);
+const timeline = cycleGenerator.makeTimeline(images, 7, titles, timelineContents);
 timelineCycle.appendChild(timeline);
 
 // Add event listener for buttons
@@ -71,7 +82,7 @@ disableTimelineHover.addEventListener('click', function(){
 
 // Create a Frame-Cycle
 const frameCycle = document.querySelector('#frameCycle');
-const frames = cycleGenerator.makeFrames(images, 5, titles, contents);
+const frames = cycleGenerator.makeFrames(images, 5, titles, frameContents);
 frameCycle.appendChild(frames);
 
 // Add event listener for buttons
