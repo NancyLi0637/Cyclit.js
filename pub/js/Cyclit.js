@@ -227,8 +227,6 @@ function createCards(cards){
         newCardsHolder.appendChild(cardHolder);
     }
 
-    //body.append(newCardsHolder)
-
     return newCardsHolder;
 }
 
@@ -358,8 +356,6 @@ function createTimeline(sections){
         timelineHolder.appendChild(container);
     }
 
-    //body.append(timelineHolder);
-
     return timelineHolder;
 }
 
@@ -468,8 +464,6 @@ function createFrames(frames){
         pageHolder.appendChild(columnHolder);
         track = 1;
     }
-
-    //body.append(pageHolder)
 
     return pageHolder
 }
