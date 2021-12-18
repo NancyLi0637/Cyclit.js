@@ -37,9 +37,7 @@ html, body {
 }
 
 .button-holder:active {
-    -webkit-box-shadow: inset 0px 0px 5px #e6e1e1;
-        -moz-box-shadow: inset 0px 0px 5px #e6e1e1;
-            box-shadow: inset 0px 0px 5px #e6e1e1;
+    box-shadow: inset 0px 0px 5px #e6e1e1;
     outline: none;
 }
 
@@ -56,4 +54,14 @@ html, body {
     position: absolute;
     left: 25%;
     z-index: 9;
+}
+
+.description {
+    width: 100%;
+    position: absolute;
+    bottom: 5px;
+    text-align: center;
+    font-size: 20px;
+    font-style: italic;
+    color: #E2E0E0;
 }

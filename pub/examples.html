@@ -1,129 +1,976 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+ <head>
+ 	<meta charset="utf-8">
+    <title>Examples | Cyclit.js</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Cyclit</title>
+    <link rel="stylesheet" type="text/css" href="examples.css">
+    <link rel="stylesheet" type="text/css" href="js/Cyclit.css">
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer type="text/javascript" src='js/Cyclit.js'></script>
+    <script defer type="text/javascript" src='js/examples.js'></script>
 
-        <link rel="stylesheet" type="text/css" href="js/Cyclit.css">
-        <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script defer type="text/javascript" src='js/Cyclit.js'></script>
-        <script defer type="text/javascript" src='js/examples.js'></script>
+ </head>
+ <body>
 
-        <style>
-            button {
-                border-radius: 20px;
-                border: none;
-                color: white;
-                padding: 15px 32px;
-                font-size: 16px;
-                margin: 4px 2px;
-                cursor: pointer;
-                background-color: #A7BD8B
-            }
+    <div class="header">
+        <h2><a href="/" style="text-decoration: none; color: inherit;">Cyclit.js</a></h2>
+    </div>
 
-            button:hover {
-                background: #82a05b;
-            }
+    <div class="main">
+        <h1 class="main-title">Examples</h1>
 
-            button:active {
-                -webkit-box-shadow: inset 0px 0px 5px #e6e1e1;
-                    -moz-box-shadow: inset 0px 0px 5px #e6e1e1;
-                        box-shadow: inset 0px 0px 5px #e6e1e1;
-                outline: none;
-            }
-        </style>
-    </head>
+        <!---------------------------------- Card Cycle Examples ------------------------------------>
 
-    <body>
-        <img src="js/resources/title.jpg" alt="Loading picture..." style="width: 100%"/>
+        <!-- Example 1: Create a Card Cycle -->
+        <div id="example1" class="examples">
+            <h2>Create a Card Cycle</h2>
+            <p>A Card Cycle with 5 images representing the growth of a tree.</p>
 
-        <div>
-            <h3 style="text-align: center">
-                Flip each of the following card to make sure you are familiar with the growing cycle!
-            </h3>
-            <div id="cardCycle"></div>
-            <div style="text-align: center">
-                <button type="button" id="flip-cards-on">
-                    Enable Flip
-                </button>
-                <button type="button" id="flip-cards-off">
-                    Disable Flip
-                </button>
-                <button type="button" id="flip-all-cards">
-                    Flip All
-                </button>
-                <button type="button" id="reset-cards">
-                    Reset
-                </button>
+            <div class="example-holder">
+                <div id="cardCycle"></div>
+            </div>
+
+            <div class="codes-holder">
+                <div class="code-holder html-holder">
+                    <div class="code-title">HTML</div>
+                    <div class="code-content">
+                        <p>&ltdiv id="cardCycle"&gt &lt/div&gt</p>
+                    </div>
+                </div>
+                <div class="code-holder css-holder">
+                    <div class="code-title">CSS</div>
+                </div>
+                <div class="code-holder js-holder">
+                    <div class="code-title">JS</div>
+                    <div class="code-content">
+                        <span>// Replace with your image links here </span><br>
+                        <span>const images = ["js/resources/pic1.jpg", 'js/resources/pic2.jpg', 'js/resources/pic3.jpg', 'js/resources/pic4.jpg',
+                        'js/resources/pic5.jpg']</span><br><br>
+                        <span>const cycleGenerator = new CyclitGenerator();</span><br>
+                        <span>const cardCycle = document.querySelector('#cardCycle');</span><br>
+                        <span>cards = cycleGenerator.makeCards(images, 5, "#A7BD8B");</span> <br>
+                        <span>cardCycle.appendChild(cards);</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div style="display: flex; flex-direction: row">
-            <div style="width: 50%">
-                <h3 style="text-align: center">
-                    Hover over each section of the timeline to check out the description!
-                </h3>
-                <div id="timelineCycle"></div>
-                <div style="text-align: center; margin-top: 20px">
-                    <button type="button" id="hover-timeline-on" >
-                        Enable Hover
+        <!-- Example 2: Make the Card Cycle Flippable -->
+        <div id="example2" class="examples">
+            <h2>Make a Card Cycle Flippable/Non-Flippable</h2>
+            <p>Each card can be flipped by enabling the flipping feature. Click on the button and hover over the card to see the hint message.</p>
+
+            <div class="example-holder">
+                <div id="cardCycle2"></div>
+                <div class="button-holder">
+                    <button class="button tree-button" id="flip-cards-on">
+                        Enable Flip
                     </button>
-                    <button type="button" id="hover-timeline-off">
-                        Disable Hover</button>
+                    <button class="button tree-button" id="flip-cards-off">
+                        Disable Flip
+                    </button>
                 </div>
             </div>
 
-            <div style="margin-left: auto; margin-right: auto">
-                <h3 style="text-align: center">
-                    Flip each of the following frame to see the title!
-                </h3>
-                <div id="frameCycle"></div>
-                <div style="text-align: center; margin-top: 20px">
-                    <button type="button" id="flip-frames-on">
+            <div class="codes-holder">
+                <div class="code-holder html-holder">
+                    <div class="code-title">HTML</div>
+                    <div class="code-content">
+                        <span>&ltdiv id="cardCycle"&gt &lt/div&gt</span><br>
+                        <span>&ltdiv class="button-holder"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &ltbutton class="button tree-button" id="flip-cards-on"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Enable Flip</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &lt/button&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &ltbutton class="button tree-button" id="flip-cards-off"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Disable Flip</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &lt/button&gt</span><br>
+                        <span>&lt/div&gt</span>
+                    </div>
+                </div>
+                <div class="code-holder css-holder">
+                    <div class="code-title">CSS</div>
+                    <div class="code-content">
+                        <span>.button-holder {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; text-align: center; </span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; margin-top: 20px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 10px;</span><br>
+                        <span>}</span><br><br>
+
+                        <span>button {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 20px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; border: none;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; color: white;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; padding: 15px 32px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; font-size: 16px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; margin: 4px 2px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cursor: pointer;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; background: #646464;</span><br>
+                        <span>}</span><br><br>
+
+                        <span>button:hover {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; background: #383333;</span><br>
+                        <span>}</span><br><br>
+    
+                        <span>button:active {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; box-shadow: inset 0px 0px 5px #e6e1e1;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; outline: none;</span><br>
+                        <span>}</span><br><br>
+
+                        <span>.tree-button {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; background-color: #A7BD8B;</span><br>
+                        <span>}</span><br><br>
+
+                        <span>.tree-button:hover {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; background: #82a05b;</span><br>
+                        <span>}</span>
+                    </div>
+                </div>
+                <div class="code-holder js-holder">
+                    <div class="code-title">JS</div>
+                    <div class="code-content">
+                        <span>// Replace with your image links here </span><br>
+                        <span>const images = ["js/resources/pic1.jpg", 'js/resources/pic2.jpg', 'js/resources/pic3.jpg', 'js/resources/pic4.jpg',
+                        'js/resources/pic5.jpg']</span><br><br>
+                        <span>const cycleGenerator = new CyclitGenerator();</span><br>
+                        <span>const cardCycle = document.querySelector('#cardCycle');</span><br>
+                        <span>cards = cycleGenerator.makeCards(images, 5, "#A7BD8B");</span> <br>
+                        <span>cardCycle.appendChild(cards);</span><br><br>
+
+                        <span>// Add event listener for buttons</span><br>
+                        <span>const enableCardFlip = document.querySelector('#flip-cards-on');</span><br>
+                        <span>enableCardFlip.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Turn the flipping option of card cycle on</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.turnOnFlip(cards);</span><br>
+                        <span>})</span><br><br>
+                        <span>const disableCardFlip = document.querySelector('#flip-cards-off');</span><br>
+                        <span>disableCardFlip.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Turn the flipping option of card cycle off</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.turnOffFlip(cards);</span><br>
+                        <span>})</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example 3: Flip all cards at once -->
+        <div id="example3" class="examples">
+            <h2>Flip all of the cards at once</h2>
+            <p>Cards can be flipped at once even though "flip" is not enable. Experience with buttons to see the different effects</p>
+
+            <div class="example-holder">
+                <div id="cardCycle3"></div>
+                <div class="button-holder">
+                    <button class="button baby-button" id="flip-cards-on2">
                         Enable Flip
                     </button>
-                    <button type="button" id="flip-frames-off">
+                    <button class="button baby-button" id="flip-cards-off2">
                         Disable Flip
                     </button>
-                    <button type="button" id="flip-all-frames">
+                    <button class="button baby-button" id="flip-all-cards">
                         Flip All
                     </button>
-                    <button type="button" id="reset-frames">
+                </div>
+            </div>
+
+            <div class="codes-holder">
+                <div class="code-holder html-holder">
+                    <div class="code-title">HTML</div>
+                    <div class="code-content">
+                        <span>&ltdiv id="cardCycle"&gt &lt/div&gt</span><br>
+                        <span>&ltdiv class="button-holder"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &ltbutton class="button baby-button" id="flip-cards-on"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Enable Flip</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &lt/button&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &ltbutton class="button baby-button" id="flip-cards-off"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Disable Flip</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &lt/button&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &ltbutton class="button baby-button" id="flip-all-cards"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Flip All</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &lt/button&gt</span><br>
+                        <span>&lt/div&gt</span>
+                    </div>
+                </div>
+                <div class="code-holder css-holder">
+                    <div class="code-title">CSS</div>
+                    <div class="code-content">
+                        <span>.button-holder {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; text-align: center; </span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; margin-top: 20px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 10px;</span><br>
+                        <span>}</span><br><br>
+
+                        <span>button {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 20px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; border: none;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; color: white;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; padding: 15px 32px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; font-size: 16px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; margin: 4px 2px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cursor: pointer;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; background: #646464;</span><br>
+                        <span>}</span><br><br>
+
+                        <span>button:hover {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; background: #383333;</span><br>
+                        <span>}</span><br><br>
+    
+                        <span>button:active {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; box-shadow: inset 0px 0px 5px #e6e1e1;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; outline: none;</span><br>
+                        <span>}</span><br><br>
+
+                        <span>.baby-button {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; background-color: #FCBFA4;</span><br>
+                        <span>}</span><br><br>
+
+                        <span>.baby-button:hover {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; background: #D76255;</span><br>
+                        <span>}</span>
+                    </div>
+                </div>
+                <div class="code-holder js-holder">
+                    <div class="code-title">JS</div>
+                    <div class="code-content">
+                        <span>// Replace with your image links here </span><br>
+                        <span>const images = ["js/resources/baby1.jpg", 'js/resources/baby2.png', 'js/resources/baby3.png', 'js/resources/baby4.png',
+                            'js/resources/baby5.png']</span><br><br>
+                        <span>const cycleGenerator = new CyclitGenerator();</span><br>
+                        <span>const cardCycle = document.querySelector('#cardCycle');</span><br>
+                        <span>cards = cycleGenerator.makeCards(images, 5, "#FCBFA4");</span> <br>
+                        <span>cardCycle.appendChild(cards);</span><br><br>
+
+                        <span>// Add event listener for buttons</span><br>
+                        <span>const enableCardFlip = document.querySelector('#flip-cards-on');</span><br>
+                        <span>enableCardFlip.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Turn the flipping option of card cycle on</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.turnOnFlip(cards);</span><br>
+                        <span>})</span><br><br>
+
+                        <span>const disableCardFlip = document.querySelector('#flip-cards-off');</span><br>
+                        <span>disableCardFlip.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Flip all cards</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.turnOffFlip(cards);</span><br>
+                        <span>})</span><br><br>
+
+                        <span>const flipCardsAll = document.querySelector('#flip-all-cards');</span><br>
+                        <span>flipCardsAll.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Reset all cards to front face</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.flipAll(cards);</span><br>
+                        <span>})</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example 4: Reset all cards to front face -->
+        <div id="example4" class="examples">
+            <h2>Reset all cards to the front face</h2>
+            <p>Cards can be reset to the front face regardless of the current flip. Experience with buttons to see the different effects</p>
+
+            <div class="example-holder">
+                <div id="cardCycle4"></div>
+                <div class="button-holder">
+                    <button class="button baby-button" id="flip-cards-on3">
+                        Enable Flip
+                    </button>
+                    <button class="button baby-button" id="flip-cards-off3">
+                        Disable Flip
+                    </button>
+                    <button class="button baby-button" id="flip-all-cards2">
+                        Flip All
+                    </button>
+                    <button class="button baby-button" id="reset-cards">
                         Reset
                     </button>
                 </div>
             </div>
+
+            <div class="codes-holder">
+                <div class="code-holder html-holder">
+                    <div class="code-title">HTML</div>
+                    <div class="code-content">
+                        <span>&ltdiv id="cardCycle"&gt &lt/div&gt</span><br>
+                        <span>&ltdiv class="button-holder"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &ltbutton class="button baby-button" id="flip-cards-on"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Enable Flip</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &lt/button&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &ltbutton class="button baby-button" id="flip-cards-off"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Disable Flip</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &lt/button&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &ltbutton class="button baby-button" id="flip-all-cards"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Flip All</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &lt/button&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &ltbutton class="button baby-button" id="reset-cards"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reset</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &lt/button&gt</span><br>
+                        <span>&lt/div&gt</span>
+                    </div>
+                </div>
+                <div class="code-holder css-holder">
+                    <div class="code-title">CSS</div>
+                    <div class="code-content">
+                        <span>.button-holder {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; text-align: center; </span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; margin-top: 20px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 10px;</span><br>
+                        <span>}</span><br><br>
+
+                        <span>button {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 20px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; border: none;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; color: white;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; padding: 15px 32px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; font-size: 16px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; margin: 4px 2px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cursor: pointer;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; background: #646464;</span><br>
+                        <span>}</span><br><br>
+
+                        <span>button:hover {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; background: #383333;</span><br>
+                        <span>}</span><br><br>
+    
+                        <span>button:active {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; box-shadow: inset 0px 0px 5px #e6e1e1;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; outline: none;</span><br>
+                        <span>}</span><br><br>
+
+                        <span>.baby-button {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; background-color: #FCBFA4;</span><br>
+                        <span>}</span><br><br>
+
+                        <span>.baby-button:hover {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; background: #D76255;</span><br>
+                        <span>}</span>
+                    </div>
+                </div>
+                <div class="code-holder js-holder">
+                    <div class="code-title">JS</div>
+                    <div class="code-content">
+                        <span>// Replace with your image links here </span><br>
+                        <span>const images = ["js/resources/baby1.jpg", 'js/resources/baby2.png', 'js/resources/baby3.png', 'js/resources/baby4.png',
+                            'js/resources/baby5.png']</span><br><br>
+                        <span>const cycleGenerator = new CyclitGenerator();</span><br>
+                        <span>const cardCycle = document.querySelector('#cardCycle');</span><br>
+                        <span>cards = cycleGenerator.makeCards(images, 5, "#FCBFA4");</span> <br>
+                        <span>cardCycle.appendChild(cards);</span><br><br>
+
+                        <span>// Add event listener for buttons</span><br>
+                        <span>const enableCardFlip = document.querySelector('#flip-cards-on');</span><br>
+                        <span>enableCardFlip.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Turn the flipping option of card cycle on</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.turnOnFlip(cards);</span><br>
+                        <span>})</span><br><br>
+
+                        <span>const disableCardFlip = document.querySelector('#flip-cards-off');</span><br>
+                        <span>disableCardFlip.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Turn the flipping option of card cycle off</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.turnOffFlip(cards);</span><br>
+                        <span>})</span><br><br>
+
+                        <span>const flipCardsAll = document.querySelector('#flip-all-cards');</span><br>
+                        <span>flipCardsAll.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Flip all cards</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.flipAll(cards);</span><br>
+                        <span>})</span><br><br>
+
+                        <span>const resetCardsAll = document.querySelector('#reset-cards');</span><br>
+                        <span>resetCardsAll.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Reset all cards to front face</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.resetAll(cards);</span><br>
+                        <span>})</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div>
-            <div id="cubeCycle"></div>
-        
-            <div>
-                <p style="text-align: center;">
-                    <button id="button1">1</button>
-                    <button id="button2">2</button>
-                    <button id="button3">3</button>
-                    <button id="button4">4</button>
-                    <button id="button5">5</button>
-                    <button id="button6">6</button>
-                </p>
+        <!---------------------------------- Timeline Cycle Examples ------------------------------------>
+
+        <!-- Example 5: Create a Timeline Cycle -->
+        <div id="example5" class="examples">
+            <h2>Create a Timeline Cycle</h2>
+            <p>A Timeline Cycle highlighting the typical workflow of a course.</p>
+
+            <div class="example-holder">
+                <div id="timelineCycle"></div>
             </div>
-            
+
+            <div class="codes-holder">
+                <div class="code-holder html-holder">
+                    <div class="code-title">HTML</div>
+                    <div class="code-content">
+                        <p>&ltdiv id="timelineCycle"&gt &lt/div&gt</p>
+                    </div>
+                </div>
+                <div class="code-holder css-holder">
+                    <div class="code-title">CSS</div>
+                </div>
+                <div class="code-holder js-holder">
+                    <div class="code-title">JS</div>
+                    <div class="code-content">
+                        <span>// Replace with your image links here </span><br>
+                        <span>const images = ["js/resources/exercise.jpg", 'js/resources/exercise.jpg', 'js/resources/group.jpg', 'js/resources/individual.jpg',
+                            'js/resources/group.jpg', 'js/resources/exercise.jpg', 'js/resources/individual.jpg', 'js/resources/exercise.jpg', 'js/resources/group.jpg', 
+                            'js/resources/individual.jpg']</span><br>
+                        <span>const timelineTitles = ["Exercise 1", "Exercise 2", "Group Proposal", "Individual Proposal", "Phase 1", "Exercise 3", 
+                            "Alpha Release", "Exercise 4", "Phase 2", "Final Submission"]</span><br>
+                        <pan>const timelineContents = ["Lorem Ipsum","Lorem Ipsum","Lorem Ipsum","Lorem Ipsum","Lorem Ipsum","Lorem Ipsum","Lorem Ipsum","Lorem Ipsum",
+                            "Lorem Ipsum","Lorem Ipsum"]</pan><br><br>
+
+                        <span>const cycleGenerator = new CyclitGenerator();</span><br>
+                        <span>const timelineCycle = document.querySelector('#timelineCycle');</span><br>
+                        <span>const timeline = cycleGenerator.makeTimeline(images, 10, timelineTitles, timelineContents);</span> <br>
+                        <span>timelineCycle.appendChild(timeline);</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div>
-            <div id="carouselCycle"></div>
-        
-            <div>
-                <p style="text-align: center;">
-                    <button id="previous-button">Previous</button>
-                    <button id="next-button">Next</button>
-                </p>
+        <!-- Example 6: Enable/Disable hovering over a Timeline Cycle -->
+        <div id="example5" class="examples">
+            <h2>Make a Timeline Cycle Hoverable/Non-Hoverable</h2>
+            <p>Each container can be hovered over by enabling the hovering feature. Click on the button and hover over the card to see the 
+                detailed description of that section.</p>
+
+            <div class="example-holder">
+                <div id="timelineCycle2"></div>
+                <div class="button-holder">
+                    <button type="button" class="button" id="hover-timeline-on" >
+                        Enable Hover
+                    </button>
+                    <button type="button" class="button" id="hover-timeline-off">
+                        Disable Hover</button>
+                </div>
             </div>
-            
+
+            <div class="codes-holder">
+                <div class="code-holder html-holder">
+                    <div class="code-title">HTML</div>
+                    <div class="code-content">
+                        <p>&ltdiv id="timelineCycle"&gt &lt/div&gt</p>
+                        <span>&ltdiv class="button-holder"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &ltbutton type="button" class="button" id="hover-timeline-on"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Enable Hover</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &lt/button&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &ltbutton type="button" class="button" id="hover-timeline-off"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Disable Hover</span><br>
+                    </div>
+                </div>
+                <div class="code-holder css-holder">
+                    <div class="code-title">CSS</div>
+                    <div class="code-content">
+                        <span>.button-holder {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; text-align: center; </span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; margin-top: 20px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 10px;</span><br>
+                        <span>}</span><br><br>
+
+                        <span>button {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 20px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; border: none;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; color: white;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; padding: 15px 32px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; font-size: 16px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; margin: 4px 2px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cursor: pointer;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; background: #646464;</span><br>
+                        <span>}</span><br><br>
+
+                        <span>button:hover {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; background: #383333;</span><br>
+                        <span>}</span><br><br>
+    
+                        <span>button:active {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; box-shadow: inset 0px 0px 5px #e6e1e1;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; outline: none;</span><br>
+                        <span>}</span><br><br>
+                    </div>
+                </div>
+                <div class="code-holder js-holder">
+                    <div class="code-title">JS</div>
+                    <div class="code-content">
+                        <span>// Replace with your image links here </span><br>
+                        <span>const images = ["js/resources/exercise.jpg", 'js/resources/exercise.jpg', 'js/resources/group.jpg', 'js/resources/individual.jpg',
+                            'js/resources/group.jpg', 'js/resources/exercise.jpg', 'js/resources/individual.jpg', 'js/resources/exercise.jpg', 'js/resources/group.jpg', 
+                            'js/resources/individual.jpg']</span><br>
+                        <span>const timelineTitles = ["Exercise 1", "Exercise 2", "Group Proposal", "Individual Proposal", "Phase 1", "Exercise 3", 
+                            "Alpha Release", "Exercise 4", "Phase 2", "Final Submission"]</span><br>
+                        <pan>const timelineContents = ["Lorem Ipsum","Lorem Ipsum","Lorem Ipsum","Lorem Ipsum","Lorem Ipsum","Lorem Ipsum","Lorem Ipsum","Lorem Ipsum",
+                            "Lorem Ipsum","Lorem Ipsum"]</pan><br><br>
+
+                        <span>const cycleGenerator = new CyclitGenerator();</span><br>
+                        <span>const timelineCycle = document.querySelector('#timelineCycle');</span><br>
+                        <span>const timeline = cycleGenerator.makeTimeline(images, 10, timelineTitles, timelineContents);</span> <br>
+                        <span>timelineCycle.appendChild(timeline);</span>
+
+                        <span>const enableTimelineHover = document.querySelector('#hover-timeline-on');</span><br>
+                        <span>enableTimelineHover.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Turn the hovering option of timeline on</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.turnOnHover(timeline)</span><br>
+                        <span>})</span><br><br>
+
+                        <span>const disableTimelineHover = document.querySelector('#hover-timeline-off');</span><br>
+                        <span>disableTimelineHover.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Turn the hovering option of timeline off</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.turnOffHover(timeline)</span><br>
+                        <span>})</span>
+                    </div>
+                </div>
+            </div>
         </div>
-    </body>
+
+
+        <!---------------------------------- Frame Cycle Examples ------------------------------------>
+
+        <!-- Example 7: Create a Frame Cycle -->
+        <div id="example7" class="examples">
+            <h2>Create a Frame Cycle</h2>
+            <p>A Frame Cycle with 4 frames telling a story.</p>
+
+            <div class="example-holder frame-example-holder">
+                <div id="frameCycle"></div>
+            </div>
+
+            <div class="codes-holder">
+                <div class="code-holder html-holder">
+                    <div class="code-title">HTML</div>
+                    <div class="code-content">
+                        <p>&ltdiv id="frameCycle"&gt &lt/div&gt</p>
+                    </div>
+                </div>
+                <div class="code-holder css-holder">
+                    <div class="code-title">CSS</div>
+                    <div class="code-content">
+                        <span>#frameCycle {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; display: flex;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; justify-content: center;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; margin: 20px;</span><br>
+                        <span>}</span><br><br>
+                    </div>
+                </div>
+                <div class="code-holder js-holder">
+                    <div class="code-title">JS</div>
+                    <div class="code-content">
+                        <span>// Replace with your image links here </span><br>
+                        <span>const images = ["js/resources/story1.jpg", 'js/resources/story2.jpg', 'js/resources/story3.jpg', 'js/resources/story4.jpg']</span><br><br>
+                        <span>const frameTitles = ['Chapter 1', "Chapter 2", "Chapter 3", "Chapter 4"]</span><br>
+                        <span>const frameContents = ["Lorem Ipsum","Lorem Ipsum","Lorem Ipsum","Lorem Ipsum"]</span><br><br>
+
+                        <span>const cycleGenerator = new CyclitGenerator();</span><br>
+                        <span>const frameCycle = document.querySelector('#frameCycle');</span><br>
+                        <span>const frames = cycleGenerator.makeFrames(images4, 4, "#EBA66B", frameTitles, frameContents);</span> <br>
+                        <span>frameCycle.appendChild(frames);</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example 8: Enable/Disable Frame Flip; Flip all frames; Reset all frame faces -->
+        <div id="example8" class="examples">
+            <h2>Enable/Disable Flip / Flip all / Reset all</h2>
+            <p>These functionalities are similar to the card cycle.</p>
+
+            <div class="example-holder frame-example-holder">
+                <div id="frameCycle2"></div>
+                <div class="button-holder">
+                    <button class="button story-button" id="flip-frames-on">
+                        Enable Flip
+                    </button>
+                    <button class="button story-button" id="flip-frames-off">
+                        Disable Flip
+                    </button>
+                    <button class="button story-button" id="flip-all-frames">
+                        Flip All
+                    </button>
+                    <button class="button story-button" id="reset-frames">
+                        Reset
+                    </button>
+                </div>
+            </div>
+
+            <div class="codes-holder">
+                <div class="code-holder html-holder">
+                    <div class="code-title">HTML</div>
+                    <div class="code-content">
+                        <span>&ltdiv id="frameCycle"&gt &lt/div&gt</span><br>
+                        <span>&ltdiv class="button-holder"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &ltbutton class="button story-button" id="flip-frames-on"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Enable Flip</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &lt/button&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &ltbutton class="button story-button" id="flip-frames-off"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Disable Flip</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &lt/button&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &ltbutton class="button story-button" id="flip-all-frames"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Flip All</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &lt/button&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &ltbutton class="button story-button" id="reset-frames"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reset</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &lt/button&gt</span><br>
+                        <span>&lt/div&gt</span>
+                    </div>
+                </div>
+                <div class="code-holder css-holder">
+                    <div class="code-title">CSS</div>
+                    <div class="code-content">
+                        <span>#frameCycle {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; display: flex;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; justify-content: center;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; margin: 20px;</span><br>
+                        <span>}</span><br><br>
+
+                        <span>.button-holder {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; text-align: center; </span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; margin-top: 20px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 10px;</span><br>
+                        <span>}</span><br><br>
+
+                        <span>button {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 20px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; border: none;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; color: white;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; padding: 15px 32px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; font-size: 16px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; margin: 4px 2px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cursor: pointer;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; background: #646464;</span><br>
+                        <span>}</span><br><br>
+
+                        <span>button:hover {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; background: #383333;</span><br>
+                        <span>}</span><br><br>
+    
+                        <span>button:active {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; box-shadow: inset 0px 0px 5px #e6e1e1;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; outline: none;</span><br>
+                        <span>}</span><br><br>
+
+                        <span>.story-button {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; background-color: #EBA66B;</span><br>
+                        <span>}</span><br><br>
+
+                        <span>.story-button:hover {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; background: #AA5F41;</span><br>
+                        <span>}</span>
+                    </div>
+                </div>
+                <div class="code-holder js-holder">
+                    <div class="code-title">JS</div>
+                    <div class="code-content">
+                        <span>// Replace with your image links here </span><br>
+                        <span>const images = ["js/resources/baby1.jpg", 'js/resources/baby2.png', 'js/resources/baby3.png', 'js/resources/baby4.png',
+                            'js/resources/baby5.png']</span><br><br>
+
+                        <span>const cycleGenerator = new CyclitGenerator();</span><br>
+                        <span>const frameCycle = document.querySelector('#frameCycle');</span><br>
+                        <span>const frames = cycleGenerator.makeFrames(images4, 4, "#EBA66B", frameTitles, frameContents);</span> <br>
+                        <span>frameCycle.appendChild(frames);</span>
+
+                        <span>const enableFrameFlip = document.querySelector('#flip-frames-on');</span><br>
+                        <span>enableFrameFlip.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Turn the flipping option of frame cycle on</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.turnOnFlip(frames);</span><br>
+                        <span>})</span><br><br>
+
+                        <span>const disableFrameFlip = document.querySelector('#flip-frames-off');</span><br>
+                        <span>disableFrameFlip.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Turn the flipping option of frame cycle off</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.turnOffFlip(frames);</span><br>
+                        <span>})</span><br><br>
+
+                        <span>const flipFramesAll = document.querySelector('#flip-all-frames');</span><br>
+                        <span>flipFramesAll.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Flip all frames</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.flipAll(frames);</span><br>
+                        <span>})</span><br><br>
+
+                        <span>const resetFramesAll = document.querySelector('#reset-frames');</span><br>
+                        <span>resetFramesAll.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Reset all frames to front face</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.resetAll(frames);</span><br>
+                        <span>})</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!---------------------------------- Cube Cycle Examples ------------------------------------>
+
+        <!-- Example 9: Create a Cube Cycle-->
+        <div id="example9" class="examples">
+            <h2>Create a Cube Cycle</h2>
+            <p>A Cube Cycle with 6 faces showing 6 possible players. Hover over the front face to view the detailed information.</p>
+
+            <div class="example-holder">
+                <div id="cubeCycle"></div>
+            </div>
+
+            <div class="codes-holder">
+                <div class="code-holder html-holder">
+                    <div class="code-title">HTML</div>
+                    <div class="code-content">
+                        <p>&ltdiv id="cubeCycle"&gt &lt/div&gt</p>
+                    </div>
+                </div>
+                <div class="code-holder css-holder">
+                    <div class="code-title">CSS</div>
+                </div>
+                <div class="code-holder js-holder">
+                    <div class="code-title">JS</div>
+                    <div class="code-content">
+                        <span>// Replace with your image links here </span><br>
+                        <span>const images = ["js/resources/player1.jpg", 'js/resources/player2.jpg', 'js/resources/player3.jpg', 'js/resources/player4.jpg', 
+                            'js/resources/player5.jpg', 'js/resources/player6.jpg']</span><br><br>
+                        <span>const cubeContents = ["Lorem Ipsum","Lorem Ipsum","Lorem Ipsum","Lorem Ipsum","Lorem Ipsum","Lorem Ipsum"]</span><br><br>
+
+                        <span>const cycleGenerator = new CyclitGenerator();</span><br>
+                        <span>const cubeCycle = document.querySelector('#cubeCycle');</span><br>
+                        <span>const cube = cycleGenerator.makeCube(images, 6, cubeContents);</span> <br>
+                        <span>cubeCycle.appendChild(cube);</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example 10: Rotate a Cube Cycle-->
+        <div id="example10" class="examples">
+            <h2>Rotate a Cube Cycle</h2>
+            <p>Click on each of the corresponding button to rotate the cube. Hover over to see the detailed information.</p>
+
+            <div class="example-holder">
+                <div id="cubeCycle2"></div>
+                <div>
+                    <p class="button-holder">
+                        <button id="button1" class="button">1</button>
+                        <button id="button2" class="button">2</button>
+                        <button id="button3" class="button">3</button>
+                        <button id="button4" class="button">4</button>
+                        <button id="button5" class="button">5</button>
+                        <button id="button6" class="button">6</button>
+                    </p>
+                </div>
+            </div>
+
+            <div class="codes-holder">
+                <div class="code-holder html-holder">
+                    <div class="code-title">HTML</div>
+                    <div class="code-content">
+                        <span>&ltdiv id="cubeCycle"&gt &lt/div&gt</span><br>
+                        <span>&ltdiv&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; &ltp style="text-align: center;"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &ltbutton id="button1" class="button"&gt1&lt/button&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &ltbutton id="button2" class="button"&gt2&lt/button&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &ltbutton id="button3" class="button"&gt3&lt/button&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &ltbutton id="button4" class="button"&gt4&lt/button&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &ltbutton id="button5" class="button"&gt5&lt/button&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &ltbutton id="button6" class="button"&gt6&lt/button&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; &lt/p&gt</span><br>
+                        <span>&lt/div&gt</span>
+                    </div>
+                </div>
+                <div class="code-holder css-holder">
+                    <div class="code-title">CSS</div>
+                    <div class="code-content">
+                        <span>button {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 20px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; border: none;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; color: white;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; padding: 15px 32px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; font-size: 16px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; margin: 4px 2px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cursor: pointer;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; background: #646464;</span><br>
+                        <span>}</span><br><br>
+
+                        <span>button:hover {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; background: #383333;</span><br>
+                        <span>}</span><br><br>
+    
+                        <span>button:active {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; box-shadow: inset 0px 0px 5px #e6e1e1;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; outline: none;</span><br>
+                        <span>}</span><br><br>
+                    </div>
+                </div>
+                <div class="code-holder js-holder">
+                    <div class="code-title">JS</div>
+                    <div class="code-content">
+                        <span>// Replace with your image links here </span><br>
+                        <span>const images = ["js/resources/player1.jpg", 'js/resources/player2.jpg', 'js/resources/player3.jpg', 'js/resources/player4.jpg', 
+                            'js/resources/player5.jpg', 'js/resources/player6.jpg']</span><br><br>
+                        <span>const cubeContents = ["Lorem Ipsum","Lorem Ipsum","Lorem Ipsum","Lorem Ipsum","Lorem Ipsum","Lorem Ipsum"]</span><br><br>
+
+                        <span>const cycleGenerator = new CyclitGenerator();</span><br>
+                        <span>const cubeCycle = document.querySelector('#cubeCycle');</span><br>
+                        <span>const cube = cycleGenerator.makeCube(images, 6, cubeContents);</span> <br>
+                        <span>cubeCycle.appendChild(cube);</span><br><br>
+
+                        <span>const button1 = document.querySelector('#button1');</span><br>
+                        <span>button1.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Rotate to cube face 1</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.rotateCube(cube, 1);</span><br>
+                        <span>})</span><br><br>
+
+                        <span>const button2 = document.querySelector('#button2');</span><br>
+                        <span>button2.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Rotate to cube face 2</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.rotateCube(cube, 2);</span><br>
+                        <span>})</span><br><br>
+
+                        <span>const button3 = document.querySelector('#button3');</span><br>
+                        <span>button3.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Rotate to cube face 3</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.rotateCube(cube, 3);</span><br>
+                        <span>})</span><br><br>
+
+                        <span>const button4 = document.querySelector('#button4');</span><br>
+                        <span>button4.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Rotate to cube face 4</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.rotateCube(cube, 4);</span><br>
+                        <span>})</span><br><br>
+
+                        <span>const button5 = document.querySelector('#button5');</span><br>
+                        <span>button5.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Rotate to cube face 5</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.rotateCube(cube, 5);</span><br>
+                        <span>})</span><br><br>
+
+                        <span>const button6 = document.querySelector('#button6');</span><br>
+                        <span>button6.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Rotate to cube face 6</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.rotateCube(cube, 6);</span><br>
+                        <span>})</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!---------------------------------- Carousel Cycle Examples ------------------------------------>
+
+        <!-- Example 11: Create a Carousel Cycle-->
+        <div id="example11" class="examples">
+            <h2>Create a Carousel Cycle</h2>
+            <p>A Carousel Cycle with 10 cells showing a general schedule of a day. Click to flip over a cell and check the corresponding time.</p>
+
+            <div class="example-holder">
+                <div id="carouselCycle"></div>
+            </div>
+
+            <div class="codes-holder">
+                <div class="code-holder html-holder">
+                    <div class="code-title">HTML</div>
+                    <div class="code-content">
+                        <p>&ltdiv id="carouselCycle"&gt &lt/div&gt</p>
+                    </div>
+                </div>
+                <div class="code-holder css-holder">
+                    <div class="code-title">CSS</div>
+                </div>
+                <div class="code-holder js-holder">
+                    <div class="code-title">JS</div>
+                    <div class="code-content">
+                        <span>// Replace with your image links here </span><br>
+                        <span>const images = ["js/resources/get_up.jpg", 'js/resources/breakfast.jpg', 'js/resources/go_to_work.jpg', 'js/resources/lunch.jpg', 
+                            'js/resources/work.jpg', 'js/resources/go_to_work.jpg', 'js/resources/dinner.jpg', 'js/resources/tv.jpg', 'js/resources/shower.jpg', 
+                            'js/resources/sleep.jpg']</span><br><br>
+                        <span>const carouselTitles = ["7:00", "8:00", "9:00", "12:00", "14:00", "17:00", "18:30", "20:00", "22:00", "23:30"]</span><br><br>
+
+                        <span>const cycleGenerator = new CyclitGenerator();</span><br>
+                        <span>const carouselCycle = document.querySelector('#carouselCycle');</span><br>
+                        <span>const carousel = cycleGenerator.makeCarousel(images6, 10, "#F1E0B6", carouselTitles);</span> <br>
+                        <span>carouselCycle.appendChild(carousel);</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example 12: Rotate a Carousel Cycle-->
+        <div id="example12" class="examples">
+            <h2>Rotate a Carousel Cycle</h2>
+            <p>Click on the "previous" and "next" button to rotate the carousel. Click each cell to flip over and check the corresponding.</p>
+
+            <div class="example-holder">
+                <div id="carouselCycle2"></div>
+                <div>
+                    <p class="button-holder">
+                        <button id="prev-button" class="button schedule-button">Prev</button>
+                        <button id="next-button" class="button schedule-button">Next</button>
+                    </p>
+                </div>
+            </div>
+
+            <div class="codes-holder">
+                <div class="code-holder html-holder">
+                    <div class="code-title">HTML</div>
+                    <div class="code-content">
+                        <span>&ltdiv id="carouselCycle"&gt &lt/div&gt</span><br>
+                        <span>&ltdiv&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; &ltp style="text-align: center;"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &ltbutton id="prev-button schedule-button" class="button"&gtPrev&lt/button&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &ltbutton id="next-button schedule-button" class="button"&gtNext&lt/button&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; &lt/p&gt</span><br>
+                        <span>&lt/div&gt</span>
+                    </div>
+                </div>
+                <div class="code-holder css-holder">
+                    <div class="code-title">CSS</div>
+                    <div class="code-content">
+                        <span>button {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 20px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; border: none;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; color: white;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; padding: 15px 32px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; font-size: 16px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; margin: 4px 2px;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cursor: pointer;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; background: #646464;</span><br>
+                        <span>}</span><br><br>
+
+                        <span>button:hover {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; background: #383333;</span><br>
+                        <span>}</span><br><br>
+
+                        <span>button:active {</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; box-shadow: inset 0px 0px 5px #e6e1e1;</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; outline: none;</span><br>
+                        <span>}</span><br><br>
+                    </div>
+                </div>
+                <div class="code-holder js-holder">
+                    <div class="code-title">JS</div>
+                    <div class="code-content">
+                        <span>// Replace with your image links here </span><br>
+                        <span>const images = ["js/resources/get_up.jpg", 'js/resources/breakfast.jpg', 'js/resources/go_to_work.jpg', 'js/resources/lunch.jpg', 
+                            'js/resources/work.jpg', 'js/resources/go_to_work.jpg', 'js/resources/dinner.jpg', 'js/resources/tv.jpg', 'js/resources/shower.jpg', 
+                            'js/resources/sleep.jpg']</span><br><br>
+                        <span>const carouselTitles = ["7:00", "8:00", "9:00", "12:00", "14:00", "17:00", "18:30", "20:00", "22:00", "23:30"]</span><br><br>
+
+                        <span>const cycleGenerator = new CyclitGenerator();</span><br>
+                        <span>const carouselCycle = document.querySelector('#carouselCycle');</span><br>
+                        <span>const carousel = cycleGenerator.makeCarousel(images6, 10, "#F1E0B6", carouselTitles);</span> <br>
+                        <span>carouselCycle.appendChild(carousel);</span><br><br>
+
+                        <span>const previousButton = document.querySelector('#prev-button');</span><br>
+                        <span>previousButton.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Rotate to the previous carousel</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.previousCarousel(carousel);</span><br>
+                        <span>})</span><br><br>
+
+                        <span>const nextButton = document.querySelector('#next-button');</span><br>
+                        <span>nextButton.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Rotate to the next carousel</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.nextCarousel(carousel);</span><br>
+                        <span>})</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+ </body>
 
 </html>
