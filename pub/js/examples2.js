@@ -3,8 +3,7 @@
 ///////////////////////////////////// Card Cycle Examples ////////////////////////////////////
 
 ///// Example 1: Create a Card Cycle /////
-const images = ["js/resources/pic1.jpg", 'js/resources/pic2.jpg', 'js/resources/pic3.jpg', 'js/resources/pic4.jpg',
-    'js/resources/pic5.jpg']
+const images = ["js/resources/pic1.jpg", 'js/resources/pic2.jpg', 'js/resources/pic3.jpg', 'js/resources/pic4.jpg', 'js/resources/pic5.jpg']
 
 const cycleGenerator = new CyclitGenerator();
 
@@ -95,7 +94,7 @@ resetCardsAll.addEventListener('click', function(){
 
 ///////////////////////////////////// Frame Cycle Examples ////////////////////////////////////
 
-// Example 7: Create a Frame-Cycle //
+///// Example 7: Create a Frame-Cycle /////
 const images4 = ["js/resources/story1.jpg", 'js/resources/story2.jpg', 'js/resources/story3.jpg', 'js/resources/story4.jpg']
 const titles = ['Chapter 1', "Chapter 2", "Chapter 3", "Chapter 4"]
 const frameContents = []
@@ -112,7 +111,7 @@ const frameCycle = document.querySelector('#frameCycle');
 const frames = cycleGenerator.makeFrames(images4, 4, "#EBA66B", titles, frameContents);
 frameCycle.appendChild(frames);
 
-// Example 8: Enable/Disable Frame Flip; Flip all frames; Reset all frame faces //
+///// Example 8: Enable/Disable Frame Flip; Flip all frames; Reset all frame faces /////
 
 const frameCycle2 = document.querySelector('#frameCycle2');
 const frames2 = cycleGenerator2.makeFrames(images4, 4, "#EBA66B", titles, frameContents);
@@ -141,4 +140,94 @@ const resetFramesAll = document.querySelector('#reset-frames');
 resetFramesAll.addEventListener('click', function(){
     // Reset all frames to front face
     cycleGenerator2.resetAll(frames2);
+})
+
+///////////////////////////////////// Cube Cycle Examples ////////////////////////////////////
+
+///// Example 9: Create a Cube Cycle /////
+const images5 = ["js/resources/player1.jpg", 'js/resources/player2.jpg', 'js/resources/player3.jpg', 'js/resources/player4.jpg', 
+'js/resources/player5.jpg', 'js/resources/player6.jpg']
+const cubeContents = []
+
+function createCubeContents(){
+    for(let i = 0; i < 6; i++){
+        cubeContents.push("Lorem Ipsum is simply dummy text of the printing and types. Lorem Ipsum has been the industry's " +
+            "standard dummy text ever since the 1500s.Lorem Ipsum.");
+    }
+}
+createCubeContents();
+
+const cubeCycle = document.querySelector('#cubeCycle');
+const cube = cycleGenerator.makeCube(images5, 6, cubeContents);
+cubeCycle.appendChild(cube);
+
+///// Example 10: Rotate a Cube Cycle /////
+const cubeCycle2 = document.querySelector('#cubeCycle2');
+const cube2 = cycleGenerator2.makeCube(images5, 6, cubeContents);
+cubeCycle2.appendChild(cube2);
+
+// Add event listener for buttons
+const button1 = document.querySelector('#button1');
+button1.addEventListener('click', function(){
+    // Rotate to cube face 1
+    cycleGenerator2.rotateCube(cube2, 1);
+})
+
+const button2 = document.querySelector('#button2');
+button2.addEventListener('click', function(){
+    // Rotate to cube face 2
+    cycleGenerator2.rotateCube(cube2, 2);
+})
+
+const button3 = document.querySelector('#button3');
+button3.addEventListener('click', function(){
+    // Rotate to cube face 3
+    cycleGenerator2.rotateCube(cube2, 3);
+})
+
+const button4 = document.querySelector('#button4');
+button4.addEventListener('click', function(){
+    // Rotate to cube face 4
+    cycleGenerator2.rotateCube(cube2, 4);
+})
+
+const button5 = document.querySelector('#button5');
+button5.addEventListener('click', function(){
+    // Rotate to cube face 5
+    cycleGenerator2.rotateCube(cube2, 5);
+})
+
+const button6 = document.querySelector('#button6');
+button6.addEventListener('click', function(){
+    // Rotate to cube face 6
+    cycleGenerator2.rotateCube(cube2, 6);
+})
+
+///////////////////////////////////// Carousel Cycle Examples ////////////////////////////////////
+
+///// Example 11: Create a Carousel Cycle /////
+const images6 = ["js/resources/get_up.jpg", 'js/resources/breakfast.jpg', 'js/resources/go_to_work.jpg', 'js/resources/lunch.jpg', 
+'js/resources/work.jpg', 'js/resources/go_to_work.jpg', 'js/resources/dinner.jpg', 'js/resources/tv.jpg', 'js/resources/shower.jpg', 'js/resources/sleep.jpg']
+const carouselTitles = ["7:00", "8:00", "9:00", "12:00", "14:00", "17:00", "18:30", "20:00", "22:00", "23:30"]
+
+const carouselCycle = document.querySelector('#carouselCycle');
+const carousel = cycleGenerator.makeCarousel(images6, 10, "#F1E0B6", carouselTitles);
+carouselCycle.appendChild(carousel);
+
+///// Example 12: Rotate a Carousel Cycle /////
+const carouselCycle2 = document.querySelector('#carouselCycle2');
+const carousel2 = cycleGenerator2.makeCarousel(images6, 10, "#F1E0B6", carouselTitles);
+carouselCycle2.appendChild(carousel2);
+
+// Add event listener for buttons
+const previousButton = document.querySelector('#prev-button');
+previousButton.addEventListener('click', function(){
+    // Rotate to the previous carousel
+    cycleGenerator2.previousCarousel(carousel2);
+})
+
+const nextButton = document.querySelector('#next-button');
+nextButton.addEventListener('click', function(){
+    // Rotate to the next carousel
+    cycleGenerator2.nextCarousel(carousel2);
 })
