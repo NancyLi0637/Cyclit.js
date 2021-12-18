@@ -9,23 +9,26 @@
         this.frames = []          // Frame Cycle
         this.cubeFaces = []       // Cube Cycle
         this.carouselCells = []   // Carousel Cycle
+
+        this.cardsHolder = null;
     }
 
     CyclitGenerator.prototype = {
 
         /* Make a Card Cycle */
-        makeCards: function(images, n) {
+        makeCards: function(images, n, backColor) {
             for(let i = 0; i < n; i++){
-                const newCard = new Card(images[i]);
+                const newCard = new Card(images[i], backColor);
                 this.cards.push(newCard);
             }
-            return _createCards(this.cards)
+            this.cardsHolder = _createCards(this.cards);
+            return this.cardsHolder;
         },
 
         /* Turn on Card/Frame Flipping feature */
         turnOnFlip: function(e){
             if(e.classList.contains('default-cards-holder')){
-                _flipCardsOn(this.cards);
+                _flipCardsOn(this.cards, this.cardsHolder);
                 for(let i = 0; i < this.cards.length; i++){
                     this.cards[i].flippable = true;
                 }
@@ -41,7 +44,7 @@
         /* Turn off Card/Frame Flipping feature */
         turnOffFlip: function(e) {
             if(e.classList.contains('default-cards-holder')){
-                _flipCardsOff(this.cards);
+                _flipCardsOff(this.cards, this.cardsHolder);
                 for(let i = 0; i < this.cards.length; i++){
                     this.cards[i].flippable = false;
                 }
@@ -57,7 +60,7 @@
         /* Flip all cards/frames */
         flipAll: function(e){
             if(e.classList.contains('default-cards-holder')){
-                _flipAllCards(this.cards);
+                _flipAllCards(this.cards, this.cardsHolder);
             }else if(e.classList.contains('page-holder')){
                 _flipAllFrames(this.frames);
             }
@@ -66,7 +69,7 @@
         /* Reset all cards/frames to front face */
         resetAll: function(e){
             if(e.classList.contains('default-cards-holder')){
-                _resetCards(this.cards);
+                _resetCards(this.cards, this.cardsHolder);
             }else if(e.classList.contains('page-holder')){
                 _resetFrames(this.frames);
             }
@@ -167,8 +170,9 @@
 
     /* JS Object */
     class Card {
-        constructor(cover) {
+        constructor(cover, back) {
             this.cover = cover;
+            this.back = back;
             this.flippable = false;
             this.flipped = false;
         }
@@ -218,7 +222,6 @@
     /* Create a Card Cycle */
     function _createCards(cards){
         const newCardsHolder = document.createElement("div");
-        newCardsHolder.id = 'default-cards-holder';
         newCardsHolder.className = 'default-cards-holder';
 
         for(let i = 0; i < cards.length; i++){
@@ -232,8 +235,11 @@
             imgHolder.className = 'img-card';
             cardFront.className = 'card-face';
             cardBack.className = 'card-face card-face-back';
+            cardBack.style.borderColor = cards[i].back;
+            cardBack.style.background = cards[i].back;
             card.className = 'card';
             cardHolder.className = 'card-holder';
+            cardHolder.style.borderColor = cards[i].back;
 
             cardFront.appendChild(imgHolder);
             card.appendChild(cardFront);
@@ -247,12 +253,10 @@
     }
 
     /* Turn the flipping option of cards on */
-    function _flipCardsOn(cards) {
+    function _flipCardsOn(cards, cardsHolder) {
         if(cards[0].flippable) {
             return;
         }
-
-        const cardsHolder = document.querySelector('#default-cards-holder');
 
         for(let i = 0; i < cards.length; i++){
             const cardHolder = cardsHolder.children[i]
@@ -280,17 +284,16 @@
                     cards[i].flipped = true;
                 }
             });
+
         }
     }
 
 
     /* Turn the flipping option of cards off */
-    function _flipCardsOff(cards) {
+    function _flipCardsOff(cards, cardsHolder) {
         if(!cards[0].flippable) {
             return;
         }
-
-        const cardsHolder = document.querySelector('#default-cards-holder');
 
         for(let i = 0; i < cards.length; i++){
             const cardHolder = cardsHolder.children[i]
@@ -313,9 +316,8 @@
     }
 
     /* Flip all the cards at once */
-    function _flipAllCards(cards) {
-        const cardsHolder = document.querySelector('#default-cards-holder');
-
+    function _flipAllCards(cards, cardsHolder) {
+    
         for(let i = 0; i < cards.length; i++){
             const cardHolder = cardsHolder.children[i]
             const card = cardHolder.children[0];
@@ -326,8 +328,7 @@
     }
 
     /* Reset all flipped cards to card front */
-    function _resetCards(cards) {
-        const cardsHolder = document.querySelector('#default-cards-holder');
+    function _resetCards(cards, cardsHolder) {
 
         for(let i = 0; i < cards.length; i++){
             const cardHolder = cardsHolder.children[i]
