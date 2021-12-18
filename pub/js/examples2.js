@@ -92,11 +92,51 @@ resetCardsAll.addEventListener('click', function(){
     cycleGenerator4.resetAll(cards4);
 })
 
+///////////////////////////////////// Timeline Cycle Examples ////////////////////////////////////
+
+///// Example 5: Createa a Timeline Cycle /////
+const images3 = ["js/resources/exercise.jpg", 'js/resources/exercise.jpg', 'js/resources/group.jpg', 'js/resources/individual.jpg',
+'js/resources/group.jpg', 'js/resources/exercise.jpg', 'js/resources/individual.jpg', 'js/resources/exercise.jpg', 'js/resources/group.jpg', 'js/resources/individual.jpg']
+const timelineTitles = ["Exercise 1", "Exercise 2", "Group Proposal", "Individual Proposal", "Phase 1", "Exercise 3", 
+"Alpha Release", "Exercise 4", "Phase 2", "Final Submission"]
+const timelineContents = []
+
+function createTimelineContents(){
+    for(let i = 0; i < images3.length; i++){
+        timelineContents.push("Lorem Ipsum is simply dummy text of the printing and types. Lorem Ipsum has been the industry's " +
+            "standard dummy text ever since the 1500s. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." +
+            " Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.");
+    }
+}
+createTimelineContents();
+
+const timelineCycle = document.querySelector('#timelineCycle');
+const timeline = cycleGenerator.makeTimeline(images3, 10, timelineTitles, timelineContents);
+timelineCycle.appendChild(timeline);
+
+///// Example 6: Make the Timeline Cycle Hoverable /////
+const timelineCycle2 = document.querySelector('#timelineCycle2');
+const timeline2 = cycleGenerator2.makeTimeline(images3, 7, timelineTitles, timelineContents);
+timelineCycle2.appendChild(timeline2);
+
+// Add event listener for buttons
+const enableTimelineHover = document.querySelector('#hover-timeline-on');
+enableTimelineHover.addEventListener('click', function(){
+    // Turn the hovering option of timeline on
+    cycleGenerator2.turnOnHover(timeline2)
+})
+
+const disableTimelineHover = document.querySelector('#hover-timeline-off');
+disableTimelineHover.addEventListener('click', function(){
+    // Turn the hovering option of timeline off
+    cycleGenerator2.turnOffHover(timeline2);
+})
+
 ///////////////////////////////////// Frame Cycle Examples ////////////////////////////////////
 
 ///// Example 7: Create a Frame-Cycle /////
 const images4 = ["js/resources/story1.jpg", 'js/resources/story2.jpg', 'js/resources/story3.jpg', 'js/resources/story4.jpg']
-const titles = ['Chapter 1', "Chapter 2", "Chapter 3", "Chapter 4"]
+const frameTitles = ['Chapter 1', "Chapter 2", "Chapter 3", "Chapter 4"]
 const frameContents = []
 
 function createFrameContents(){
@@ -108,13 +148,13 @@ function createFrameContents(){
 createFrameContents();
 
 const frameCycle = document.querySelector('#frameCycle');
-const frames = cycleGenerator.makeFrames(images4, 4, "#EBA66B", titles, frameContents);
+const frames = cycleGenerator.makeFrames(images4, 4, "#EBA66B", frameTitles, frameContents);
 frameCycle.appendChild(frames);
 
 ///// Example 8: Enable/Disable Frame Flip; Flip all frames; Reset all frame faces /////
 
 const frameCycle2 = document.querySelector('#frameCycle2');
-const frames2 = cycleGenerator2.makeFrames(images4, 4, "#EBA66B", titles, frameContents);
+const frames2 = cycleGenerator2.makeFrames(images4, 4, "#EBA66B", frameTitles, frameContents);
 frameCycle2.appendChild(frames2);
 
 // Add event listener for buttons
