@@ -12,6 +12,8 @@
 
         this.cardsHolder = null;
         this.pageHolder = null;
+        this.cubeHolder = null;
+        this.carouselHolder = null;
     }
 
     CyclitGenerator.prototype = {
@@ -123,18 +125,19 @@
                 const newFace = new CubeFace(images[i], i+1, 100, angles[i], contents[i]);
                 this.cubeFaces.push(newFace);
             }
-            return _createCubeFaces(this.cubeFaces);
+            this.cubeHolder = _createCubeFaces(this.cubeFaces);
+            return this.cubeHolder;
         },
 
         /* Rotate to a certain face of the Cube */
         rotateCube: function(e, face){
             if(e.classList.contains('cube-holder')){
-                _cubeRotate(this.cubeFaces, face);
+                _cubeRotate(this.cubeFaces, face, this.cubeHolder);
             }
         },
 
         /* Make a Carousel Cycle */
-        makeCarousel: function(images, n){
+        makeCarousel: function(images, n, backColor, titles = []){
             // Store the current cell index
             this.carouselCells.push(0)
             // Calculate the appropriate translation and angle
@@ -142,10 +145,11 @@
             const translation = 105/ Math.tan( Math.PI / n );
             
             for(let i = 0; i < n; i++){
-                const newCell = new CarouselCell(images[i], i+1, translation, angle * i);
+                const newCell = new CarouselCell(images[i], backColor, titles == [] ? (i+1) : titles[i], translation, angle * i);
                 this.carouselCells.push(newCell);
             }
-            return _createCarouselCells(this.carouselCells);
+            this.carouselHolder = _createCarouselCells(this.carouselCells);
+            return this.carouselHolder;
         },
 
         /* Rotate right of the Carousel */
@@ -153,7 +157,7 @@
             if(e.classList.contains('carousel-holder')){
                 this.carouselCells[0]--;
                 const angle = this.carouselCells[0] / (this.carouselCells.length-1) * (-360);
-                _carouselRotate(this.carouselCells, angle);
+                _carouselRotate(this.carouselCells, angle, this.carouselHolder);
             }
         },
 
@@ -162,7 +166,7 @@
             if(e.classList.contains('carousel-holder')){
                 this.carouselCells[0]++;
                 const angle = this.carouselCells[0] / (this.carouselCells.length-1) * (-360);
-                _carouselRotate(this.carouselCells, angle);
+                _carouselRotate(this.carouselCells, angle, this.carouselHolder);
             }
         }
 
@@ -211,9 +215,10 @@
     }
 
     class CarouselCell {
-        constructor(cover, number, z_index, angle) {
+        constructor(cover, back, title, z_index, angle) {
             this.cover = cover;
-            this.number = number;
+            this.back = back;
+            this.title = title;
             this.z_index = z_index;
             this.angle = angle;
         }
@@ -647,8 +652,8 @@
     }
 
     /* Rotate the cube to the required face */
-    function _cubeRotate(faces, face) {
-        const cube = document.querySelector('.cube');
+    function _cubeRotate(faces, face, cubeHolder) {
+        const cube = cubeHolder.children[0];
         cube.style.transform = 'translateZ(-' + faces[face-1].z_index + 'px) ' + (face == 5 || face == 6 ? 'rotateX(' : 'rotateY(') + (-1*faces[face-1].angle) + 'deg)';
     }
 
@@ -678,14 +683,17 @@
             cellFront.className = 'cell-face';
             number.className = 'number-cell';
             cellBack.className = 'cell-face cell-face-back';
+            cellBack.style.borderColor = cells[i].back;
+            cellBack.style.background = cells[i].back;
             cell.className = 'cell'
             cellHolder.className = 'carousel-cell';
+            cellHolder.style.borderColor = cells[i].back;
             cellHolder.style.transform = 'rotateY(' + cells[i].angle +'deg) translateZ(' + cells[i].z_index + 'px)';
 
             hoverMessage.appendChild(document.createTextNode('Click to flip'));
             hoverMessageHolder.appendChild(hoverMessage);
             cellFront.appendChild(imgHolder);
-            number.appendChild(document.createTextNode(cells[i].number));
+            number.appendChild(document.createTextNode(cells[i].title));
             cellBack.appendChild(number);
             cell.appendChild(cellFront);
             cell.appendChild(cellBack);
@@ -705,8 +713,8 @@
     }
 
     /* Rotate the Carousel */
-    function _carouselRotate(cells, angle){
-        const carousel = document.querySelector('.carousel');
+    function _carouselRotate(cells, angle, carouselHolder){
+        const carousel = carouselHolder.children[0];
         carousel.style.transform = 'translateZ(-' + cells[1].z_index + 'px) rotateY(' + angle +'deg)';
     }
 

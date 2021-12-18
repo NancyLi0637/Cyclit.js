@@ -282,6 +282,7 @@
 }
 
 .img-frame {
+
     width: 100%;
     height: 100%;
 }
@@ -339,7 +340,7 @@
 .cube-hover-holder:hover .hover-holder{
     width: 100%;
     height: fit-content;
-    border: 3px solid #A7BD8B;
+    border: 3px solid black;
     background-color: white;
     z-index: 9;
     visibility: visible;
@@ -357,7 +358,7 @@
     margin: 40px 0;
     position: relative;
     width: 210px;
-    height: 140px;
+    height: 160px;
     margin: 40px auto;
     perspective: 1000px;
   }
@@ -374,10 +375,11 @@
   .carousel-cell {
     position: absolute;
     width: 190px;
-    height: 120px;
+    height: 140px;
     left: 10px;
     top: 10px;
-    border: 2px solid #A7BD8B;
+    border-width: 2px ;
+    border-style: solid;
     box-sizing: border-box;
   }
   
@@ -429,8 +431,8 @@
       justify-content: center;
       align-items: center;
   
-      background: #A7BD8B;
-      border: 1px solid #A7BD8B;
+      border-width: 1px ;
+      border-style: solid;
       transform: rotateX(-180deg);
   }
   
@@ -441,7 +443,7 @@
   
   .number-cell {
       color: white;
-      font-size: 80px;
+      font-size: 70px;
   }
 
 
