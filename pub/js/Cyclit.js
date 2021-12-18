@@ -19,6 +19,11 @@
 
     CyclitGenerator.prototype = {
 
+        /* Check if this library is successfully included */
+        connect: function() {
+            console.log("Succesfully included!");
+        },
+
         /* Make a Card Cycle */
         makeCards: function(images, n, backColor) {
             for(let i = 0; i < n; i++){
