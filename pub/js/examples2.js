@@ -1,5 +1,7 @@
 "use strict";
 
+///////////////////////////////////// Card Cycle Examples ////////////////////////////////////
+
 ///// Example 1: Create a Card Cycle /////
 const images = ["js/resources/pic1.jpg", 'js/resources/pic2.jpg', 'js/resources/pic3.jpg', 'js/resources/pic4.jpg',
     'js/resources/pic5.jpg']
@@ -49,13 +51,13 @@ enableCardFlip2.addEventListener('click', function(){
 
 const disableCardFlip2 = document.querySelector('#flip-cards-off2');
 disableCardFlip2.addEventListener('click', function(){
-    // Turn the flipping option of card cycle off
+    // Flip all cards
     cycleGenerator3.turnOffFlip(cards3);
 })
 
 const flipCardsAll = document.querySelector('#flip-all-cards');
 flipCardsAll.addEventListener('click', function(){
-    // Turn the flipping option of card cycle off
+    // Reset all cards to front face
     cycleGenerator3.flipAll(cards3);
 })
 
@@ -75,13 +77,13 @@ enableCardFlip3.addEventListener('click', function(){
 
 const disableCardFlip3 = document.querySelector('#flip-cards-off3');
 disableCardFlip3.addEventListener('click', function(){
-    // Turn the flipping option of card cycle off
+    // Flip all cards
     cycleGenerator4.turnOffFlip(cards4);
 })
 
 const flipCardsAll2 = document.querySelector('#flip-all-cards2');
 flipCardsAll2.addEventListener('click', function(){
-    // Turn the flipping option of card cycle off
+    // Reset all cards to front face
     cycleGenerator4.flipAll(cards4);
 })
 
@@ -89,4 +91,54 @@ const resetCardsAll = document.querySelector('#reset-cards');
 resetCardsAll.addEventListener('click', function(){
     // Turn the flipping option of card cycle off
     cycleGenerator4.resetAll(cards4);
+})
+
+///////////////////////////////////// Frame Cycle Examples ////////////////////////////////////
+
+// Example 7: Create a Frame-Cycle //
+const images4 = ["js/resources/story1.jpg", 'js/resources/story2.jpg', 'js/resources/story3.jpg', 'js/resources/story4.jpg']
+const titles = ['Chapter 1', "Chapter 2", "Chapter 3", "Chapter 4"]
+const frameContents = []
+
+function createFrameContents(){
+    for(let i = 0; i < images4.length; i++){
+        frameContents.push("Lorem Ipsum is simply dummy text of the printing and types. Lorem Ipsum has been the industry's " +
+            "standard dummy text ever since the 1500s.Lorem Ipsum.");
+    }
+}
+createFrameContents();
+
+const frameCycle = document.querySelector('#frameCycle');
+const frames = cycleGenerator.makeFrames(images4, 4, "#EBA66B", titles, frameContents);
+frameCycle.appendChild(frames);
+
+// Example 8: Enable/Disable Frame Flip; Flip all frames; Reset all frame faces //
+
+const frameCycle2 = document.querySelector('#frameCycle2');
+const frames2 = cycleGenerator2.makeFrames(images4, 4, "#EBA66B", titles, frameContents);
+frameCycle2.appendChild(frames2);
+
+// Add event listener for buttons
+const enableFrameFlip = document.querySelector('#flip-frames-on');
+enableFrameFlip.addEventListener('click', function(){
+    // Turn the flipping option of frame cycle on
+    cycleGenerator2.turnOnFlip(frames2);
+})
+
+const disableFrameFlip = document.querySelector('#flip-frames-off');
+disableFrameFlip.addEventListener('click', function(){
+    // Turn the flipping option of frame cycle off
+    cycleGenerator2.turnOffFlip(frames2);
+})
+
+const flipFramesAll = document.querySelector('#flip-all-frames');
+flipFramesAll.addEventListener('click', function(){
+    // Flip all frames
+    cycleGenerator2.flipAll(frames2);
+})
+
+const resetFramesAll = document.querySelector('#reset-frames');
+resetFramesAll.addEventListener('click', function(){
+    // Reset all frames to front face
+    cycleGenerator2.resetAll(frames2);
 })

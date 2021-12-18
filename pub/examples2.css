@@ -29,7 +29,7 @@ body {
     color: #383333;
 }
 
-/* Style for Exampes */
+/* Style for Examples */
 .examples {
     margin-top: 70px;
 }
@@ -40,6 +40,24 @@ body {
 
 .example-holder {
     border: 2px solid #383333;
+}
+
+.frame-example-holder {
+    width: fit-content;
+}
+
+#frameCycle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+#frameCycle2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
 }
 
 .codes-holder {
@@ -104,4 +122,12 @@ button:active {
 
 .baby-button:hover {
     background: #D76255;
+}
+
+.story-button {
+    background: #EBA66B;
+}
+
+.story-button:hover {
+    background: #AA5F41;
 }
