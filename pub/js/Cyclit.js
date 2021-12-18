@@ -7,6 +7,7 @@ function CyclitGenerator() {
     this.cards = []
     this.timelineSecs = []
     this.frames = []
+    this.carouselCells = []
 }
 
 CyclitGenerator.prototype = {
@@ -97,6 +98,36 @@ CyclitGenerator.prototype = {
             this.frames.push(newFrame)
         }
         return createFrames(this.frames);
+    },
+
+    makeCarousel: function(images, n){
+        // Store the current cell index
+        this.carouselCells.push(0)
+        // Calculate the appropriate translation and angle
+        const angle = 360/n;
+        const translation = 105/ Math.tan( Math.PI / n );
+        
+        for(let i = 0; i < n; i++){
+            const newCell = new CarouselCell(images[i], i+1, translation, angle * i);
+            this.carouselCells.push(newCell);
+        }
+        return createCarouselCells(this.carouselCells);
+    },
+
+    previousCarousel: function(e){
+        if(e.classList.contains('carousel-holder')){
+            this.carouselCells[0]--;
+            const angle = this.carouselCells[0] / (this.carouselCells.length-1) * (-360);
+            carouselRotate(this.carouselCells, angle);
+        }
+    },
+
+    nextCarousel: function(e) {
+        if(e.classList.contains('carousel-holder')){
+            this.carouselCells[0]++;
+            const angle = this.carouselCells[0] / (this.carouselCells.length-1) * (-360);
+            carouselRotate(this.carouselCells, angle);
+        }
     }
 
 }
@@ -129,6 +160,14 @@ class Frame {
     }
 }
 
+class CarouselCell {
+    constructor(cover, number, z_index, angle) {
+        this.cover = cover;
+        this.number = number;
+        this.z_index = z_index;
+        this.angle = angle;
+    }
+}
 
 /* DOM Manipulation */
 
@@ -145,7 +184,6 @@ function createCards(cards){
         const cardBack = document.createElement('div');
         const imgHolder = document.createElement('img');
 
-
         imgHolder.setAttribute('src', cards[i].cover);
         imgHolder.className = 'img-card';
         cardFront.className = 'card-face';
@@ -161,7 +199,7 @@ function createCards(cards){
         newCardsHolder.appendChild(cardHolder);
     }
 
-    body.append(newCardsHolder)
+    //body.append(newCardsHolder)
 
     return newCardsHolder;
 }
@@ -292,7 +330,7 @@ function createTimeline(sections){
         timelineHolder.appendChild(container);
     }
 
-    body.append(timelineHolder);
+    //body.append(timelineHolder);
 
     return timelineHolder;
 }
@@ -402,7 +440,7 @@ function createFrames(frames){
         track = 1;
     }
 
-    body.append(pageHolder)
+    //body.append(pageHolder)
 
     return pageHolder
 }
@@ -521,4 +559,63 @@ function resetFrames(frames) {
             frames[i].flipped = false;
         }
     }
+}
+
+/* Create a Carousel Cycle */
+function createCarouselCells(cells) {
+
+    const carouselHolder = document.createElement('div');
+    const carousel = document.createElement('div');
+
+    //carousel.id = 'carousel';
+    carousel.className = 'carousel';
+    carousel.style.transform = 'translateZ(-' + cells[1].z_index + 'px)';
+    carouselHolder.className = 'carousel-holder';
+
+    for(let i = 1; i < cells.length; i++){
+        const cellHolder = document.createElement('div');
+        const cell = document.createElement('div');
+        const cellFront = document.createElement('div');
+        const cellBack = document.createElement('div');
+        const imgHolder = document.createElement('img');
+        const number = document.createElement('h1');
+        const hoverMessageHolder = document.createElement('div');
+        const hoverMessage = document.createElement('p');
+
+        hoverMessageHolder.className = 'hover-message-holder';
+        imgHolder.setAttribute('src', cells[i].cover);
+        imgHolder.className = 'img-cell';
+        cellFront.className = 'cell-face';
+        number.className = 'number-cell';
+        cellBack.className = 'cell-face cell-face-back';
+        cell.className = 'cell'
+        cellHolder.className = 'carousel-cell';
+        cellHolder.style.transform = 'rotateY(' + cells[i].angle +'deg) translateZ(' + cells[i].z_index + 'px)';
+
+        hoverMessage.appendChild(document.createTextNode('Click to flip'));
+        hoverMessageHolder.appendChild(hoverMessage);
+        cellFront.appendChild(imgHolder);
+        number.appendChild(document.createTextNode(cells[i].number));
+        cellBack.appendChild(number);
+        cell.appendChild(cellFront);
+        cell.appendChild(cellBack);
+        cellHolder.appendChild(cell);
+        cellHolder.appendChild(hoverMessageHolder);
+        carousel.appendChild(cellHolder);
+
+        cell.addEventListener( 'click', function() {
+            cell.classList.toggle('is-flipped');
+        });
+    }
+
+
+    carouselHolder.appendChild(carousel);
+
+    return carouselHolder;
+}
+
+/* Rotate the Carousel */
+function carouselRotate(cells, angle){
+    const carousel = document.querySelector('.carousel');
+    carousel.style.transform = 'translateZ(-' + cells[1].z_index + 'px) rotateY(' + angle +'deg)';
 }

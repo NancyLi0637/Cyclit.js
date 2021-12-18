@@ -1,3 +1,4 @@
+/* Card Cycle */
 .default-cards-holder {
     display: flex;
     flex-direction: row;
@@ -74,7 +75,7 @@
     width: 100%;
 }
 
-
+/* Timeline Cycle */
 .timeline-holder {
     position: relative;
     max-width: 1200px;
@@ -200,6 +201,7 @@
    text-align: center;
 }
 
+/* Frame Cycle */
 .page-holder {
     width: fit-content;
     height: fit-content;
@@ -293,6 +295,103 @@
     color: white;
 }
 
+/* Carousel Cycle */
+.carousel-holder {
+  box-sizing: border-box;
+  border: 1px solid #CCC;
+  margin: 40px 0;
+  position: relative;
+  width: 210px;
+  height: 140px;
+  margin: 40px auto;
+  perspective: 1000px;
+}
+
+.carousel {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+  box-sizing: border-box;
+}
+
+.carousel-cell {
+  position: absolute;
+  width: 190px;
+  height: 120px;
+  left: 10px;
+  top: 10px;
+  border: 2px solid #A7BD8B;
+  box-sizing: border-box;
+}
+
+.carousel-cell .hover-message-holder {
+    position: absolute;
+    bottom: 3px;
+    right: -20px;
+    visibility: hidden;
+}
+
+.carousel-cell:hover .hover-message-holder{
+    width: 100px;
+    height: 30px;
+    background: #C4C4C4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: visible;
+}
+
+.cell {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.cell.is-flipped {
+    transform: rotateX( 180deg );
+}
+  
+.cell-face {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    text-align: center;
+    -webkit-backface-visibility: hidden;
+}
+
+.cell-face-back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #A7BD8B;
+    border: 1px solid #A7BD8B;
+    transform: rotateX(-180deg);
+}
+
+.img-cell {
+    width: 100%;
+    height: 100%;
+}
+
+.number-cell {
+    color: white;
+    font-size: 80px;
+}
+  
+
+
+  
 
 
 
