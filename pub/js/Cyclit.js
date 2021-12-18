@@ -11,6 +11,7 @@
         this.carouselCells = []   // Carousel Cycle
 
         this.cardsHolder = null;
+        this.timelineHolder = null;
         this.pageHolder = null;
         this.cubeHolder = null;
         this.carouselHolder = null;
@@ -84,15 +85,16 @@
                 const newSection = new TimelineSection(images[i], titles[i], contents[i]);
                 this.timelineSecs.push(newSection);
             }
-            return _createTimeline(this.timelineSecs);
+            this.timelineHolder = _createTimeline(this.timelineSecs);
+            return this.timelineHolder;
         },
 
         /* Turn on the hovering feature of a timeline section */
         turnOnHover: function(e){
             if(e.classList.contains('timeline-holder')){
-                _hoverTimelineOn(this.timelineSecs)
+                _hoverTimelineOn(this.timelineSecs, this.timelineHolder)
                 for(let i = 0; i < this.timelineSecs.length; i++){
-                    this.timelineSecs[i].hoverable = false;
+                    this.timelineSecs[i].hoverable = true;
                 }
             }
         },
@@ -100,9 +102,9 @@
         /* Turn off the hovering feature of a timeline section */
         turnOffHover: function(e) {
             if(e.classList.contains('timeline-holder')){
-                _hoverTimelineOff(this.timelineSecs)
+                _hoverTimelineOff(this.timelineSecs, this.timelineHolder)
                 for(let i = 0; i < this.timelineSecs.length; i++){
-                    this.timelineSecs[i].hoverable = true;
+                    this.timelineSecs[i].hoverable = false;
                 }
             }
         },
@@ -352,7 +354,6 @@
     /* Create a Timeline Cycle */
     function _createTimeline(sections){
         const timelineHolder = document.createElement('div');
-        timelineHolder.id = 'timeline-holder';
         timelineHolder.className = 'timeline-holder';
 
         for(let i = 0; i < sections.length; i++){
@@ -385,12 +386,10 @@
     }
 
     /* Turn the hovering option of timeline on */
-    function _hoverTimelineOn(sections) {
+    function _hoverTimelineOn(sections, timelineHolder) {
         if(sections[0].hoverable){
             return
         }
-
-        const timelineHolder = document.querySelector('#timeline-holder');
 
         for(let i = 0; i < sections.length; i++){
             const sectionHolder = timelineHolder.children[i].children[0];
@@ -424,12 +423,10 @@
     }
 
     /* Turn the hovering option of timeline off */
-    function _hoverTimelineOff(sections) {
+    function _hoverTimelineOff(sections, timelineHolder) {
         if(!sections[0].hoverable){
             return
         }
-
-        const timelineHolder = document.querySelector('#timeline-holder');
 
         for(let i = 0; i < sections.length; i++){
             const sectionHolder = timelineHolder.children[i].children[0];
