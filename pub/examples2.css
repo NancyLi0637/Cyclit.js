@@ -24,7 +24,7 @@ body {
     margin-left: 9%;
 }
 
-.main h1{
+.main-title{
     font-size: 50px;
     color: #383333;
 }
@@ -64,7 +64,7 @@ body {
     display: flex;
     flex-direction: row;
     margin-top: 30px;
-    background-color: rgb(202, 199, 199);
+    background-color: #f5f2f0;
 }
 
 .code-holder {
@@ -85,7 +85,7 @@ body {
 
 .code-title{
     text-align: center;
-    background-color: rgb(161, 160, 160);
+    background-color: #b8b5b2;
     color: white;
 }
 
@@ -101,6 +101,11 @@ button {
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+    background: #646464;
+}
+
+.button:hover {
+    background: #383333;
 }
 
 button:active {
@@ -131,3 +136,13 @@ button:active {
 .story-button:hover {
     background: #AA5F41;
 }
+
+.schedule-button {
+    background: #F1E0B6;
+}
+
+.schedule-button:hover {
+    background: #e0c788;
+}
+
+
