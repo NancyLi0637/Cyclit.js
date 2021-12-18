@@ -9,6 +9,7 @@ const images = ["js/resources/pic1.jpg", 'js/resources/pic2.jpg', 'js/resources/
 const titles = ['Baby Tree', 'Infant Tree', 'Child Tree', 'Teenage Tree', 'Adult Tree','Adult Tree','Adult Tree']
 const timelineContents = []
 const frameContents = []
+const cubeContents = []
 
 function createTimelineContents(){
     for(let i = 0; i < images.length; i++){
@@ -25,8 +26,16 @@ function createFrameContents(){
     }
 }
 
+function createCubeContents(){
+    for(let i = 0; i < 6; i++){
+        cubeContents.push("Lorem Ipsum is simply dummy text of the printing and types. Lorem Ipsum has been the industry's " +
+            "standard dummy text ever since the 1500s.Lorem Ipsum.");
+    }
+}
+
 createTimelineContents();
 createFrameContents();
+createCubeContents();
 
 ///////////////////////////////////////////////
 
@@ -114,6 +123,50 @@ resetFramesAll.addEventListener('click', function(){
 
 ///////////////////////////////////////////////
 
+// Create a Cube Cycle
+const cubeCycle = document.querySelector('#cubeCycle');
+const cube = cycleGenerator.makeCube(images, 6, cubeContents);
+cubeCycle.appendChild(cube);
+
+// Add event listener for buttons
+const button1 = document.querySelector('#button1');
+button1.addEventListener('click', function(){
+    // Rotate to cube face 1
+    cycleGenerator.rotateCube(cube, 1);
+})
+
+const button2 = document.querySelector('#button2');
+button2.addEventListener('click', function(){
+    // Rotate to cube face 2
+    cycleGenerator.rotateCube(cube, 2);
+})
+
+const button3 = document.querySelector('#button3');
+button3.addEventListener('click', function(){
+    // Rotate to cube face 3
+    cycleGenerator.rotateCube(cube, 3);
+})
+
+const button4 = document.querySelector('#button4');
+button4.addEventListener('click', function(){
+    // Rotate to cube face 4
+    cycleGenerator.rotateCube(cube, 4);
+})
+
+const button5 = document.querySelector('#button5');
+button5.addEventListener('click', function(){
+    // Rotate to cube face 5
+    cycleGenerator.rotateCube(cube, 5);
+})
+
+const button6 = document.querySelector('#button6');
+button6.addEventListener('click', function(){
+    // Rotate to cube face 6
+    cycleGenerator.rotateCube(cube, 6);
+})
+
+///////////////////////////////////////////////
+
 // Create a Carousel Cycle
 const carouselCycle = document.querySelector('#carouselCycle');
 const carousel = cycleGenerator.makeCarousel(images, 15);
@@ -131,3 +184,5 @@ nextButton.addEventListener('click', function(){
     // Rotate to the next carousel
     cycleGenerator.nextCarousel(carousel);
 })
+
+

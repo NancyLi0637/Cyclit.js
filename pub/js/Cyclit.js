@@ -8,6 +8,7 @@ function CyclitGenerator() {
     this.timelineSecs = []
     this.frames = []
     this.carouselCells = []
+    this.cubeFaces = []
 }
 
 CyclitGenerator.prototype = {
@@ -100,6 +101,22 @@ CyclitGenerator.prototype = {
         return createFrames(this.frames);
     },
 
+    makeCube: function(images, n, contents){
+        // All face orders are front(1), back(2), left(3), right(4), top(5), bottom(6)
+        const angles = [0, 180, -90, 90, 90, -90]
+        for(let i = 0; i < n; i++){
+            const newFace = new CubeFace(images[i], i+1, 100, angles[i], contents[i]);
+            this.cubeFaces.push(newFace);
+        }
+        return createCubeFaces(this.cubeFaces);
+    },
+
+    rotateCube: function(e, face){
+        if(e.classList.contains('cube-holder')){
+            cubeRotate(this.cubeFaces, face);
+        }
+    },
+
     makeCarousel: function(images, n){
         // Store the current cell index
         this.carouselCells.push(0)
@@ -160,6 +177,16 @@ class Frame {
     }
 }
 
+class CubeFace {
+    constructor(cover, face, z_index, angle, content) {
+        this.cover = cover;
+        this.face = face;
+        this.z_index = z_index;
+        this.angle = angle;
+        this.content = content;
+    }
+}
+
 class CarouselCell {
     constructor(cover, number, z_index, angle) {
         this.cover = cover;
@@ -168,6 +195,7 @@ class CarouselCell {
         this.angle = angle;
     }
 }
+
 
 /* DOM Manipulation */
 
@@ -359,6 +387,7 @@ function hoverTimelineOn(sections) {
         hoverImageHolder.className = 'hover-image-holder';
         hoverHolder.className = 'hover-holder';
         hoverImage.setAttribute('src', sections[i].cover)
+        sectionHolder.classList.add('section-hover-holder')
         sectionHolder.classList.add('holder')
 
         hoverContent.appendChild(document.createTextNode(sections[i].content));
@@ -561,13 +590,67 @@ function resetFrames(frames) {
     }
 }
 
+/* Create a Cube Cycle */
+function createCubeFaces(faces) {
+   
+    const cubeHolder = document.createElement('div');
+    const cube = document.createElement('div');
+
+    cube.className = 'cube';
+    cubeHolder.className = 'cube-holder';
+
+    for(let i = 0; i < faces.length; i++){
+        const cubeFace = document.createElement('div');
+        const faceLabelHolder = document.createElement('div');
+        const faceLabel = document.createElement('h1');
+        const hoverHolder = document.createElement('div');
+        const hoverImageHolder = document.createElement('div');
+        const hoverImage = document.createElement('img');
+        const hoverContentHolder = document.createElement('div');
+        const hoverContent = document.createElement('p');
+        const hoverCover = document.createElement('div');
+
+        hoverCover.className = 'hover-cover';
+        hoverContentHolder.className = 'hover-content-holder';
+        hoverImage.className = 'hover-image';
+        hoverImageHolder.className = 'hover-image-holder';
+        hoverHolder.className = 'hover-holder';
+        hoverImage.setAttribute('src', faces[i].cover)
+        faceLabelHolder.className = 'face-label-holder';
+        cubeFace.className = 'cube-face cube-hover-holder holder';
+        cubeFace.style.transform = (i == 4 || i == 5 ? 'rotateX(' : 'rotateY(') + faces[i].angle + 'deg) translateZ(' + faces[i].z_index + 'px)';
+        cubeFace.style.background = 'hsla(' + 50*i + ', 100%, 50%, 0.7)';
+
+        hoverContent.appendChild(document.createTextNode(faces[i].content));
+        hoverContentHolder.appendChild(hoverContent);
+        hoverImageHolder.appendChild(hoverImage);
+        hoverHolder.appendChild(hoverImageHolder);
+        hoverHolder.appendChild(hoverContentHolder);
+        faceLabel.appendChild(document.createTextNode(faces[i].face));
+        faceLabelHolder.appendChild(faceLabel);
+        cubeFace.appendChild(faceLabelHolder);
+        cubeFace.appendChild(hoverCover);
+        cubeFace.appendChild(hoverHolder);
+        cube.appendChild(cubeFace)
+    }
+
+    cubeHolder.appendChild(cube);
+
+    return cubeHolder;
+}
+
+/* Rotate the cube to the required face */
+function cubeRotate(faces, face) {
+    const cube = document.querySelector('.cube');
+    cube.style.transform = 'translateZ(-' + faces[face-1].z_index + 'px) ' + (face == 5 || face == 6 ? 'rotateX(' : 'rotateY(') + (-1*faces[face-1].angle) + 'deg)';
+}
+
 /* Create a Carousel Cycle */
 function createCarouselCells(cells) {
 
     const carouselHolder = document.createElement('div');
     const carousel = document.createElement('div');
 
-    //carousel.id = 'carousel';
     carousel.className = 'carousel';
     carousel.style.transform = 'translateZ(-' + cells[1].z_index + 'px)';
     carouselHolder.className = 'carousel-holder';
