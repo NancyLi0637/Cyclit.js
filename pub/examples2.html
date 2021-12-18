@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+ 	<meta charset="utf-8">
+    <title>Examples | Cyclit.js</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="examples2.css">
+    <link rel="stylesheet" type="text/css" href="js/Cyclit.css">
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer type="text/javascript" src='js/Cyclit.js'></script>
+    <script defer type="text/javascript" src='js/examples2.js'></script>
+
+ </head>
+ <body>
+
+    <div class="header">
+        <h2>Cyclit.js</h2>
+    </div>
+
+    <div class="main">
+        <h1>Examples</h1>
+
+        <!-- Create a Card Cycle -->
+        <div id="example1" class="examples">
+            <h2>Create a Card Cycle</h2>
+            <p>A Card Cycle with 5 images representing the growth of a tree.</p>
+
+            <div class="example-holder">
+                <div id="cardCycle"></div>
+            </div>
+
+            <div class="codes-holder">
+                <div class="code-holder html-holder">
+                    <div class="code-title">HTML</div>
+                    <div class="code-content">
+                        <p>&ltdiv id="cardCycle"&gt &lt/div&gt</p>
+                    </div>
+                </div>
+                <div class="code-holder css-holder">
+                    <div class="code-title">CSS</div>
+                </div>
+                <div class="code-holder js-holder">
+                    <div class="code-title">JS</div>
+                    <div class="code-content">
+                        <span>// Replace with your image links here </span><br>
+                        <span>const images = ["js/resources/pic1.jpg", 'js/resources/pic2.jpg', 'js/resources/pic3.jpg', 'js/resources/pic4.jpg',
+                        'js/resources/pic5.jpg']</span><br><br>
+                        <span>const cycleGenerator = new CyclitGenerator();</span><br>
+                        <span>const cardCycle = document.querySelector('#cardCycle');</span><br>
+                        <span>cards = cycleGenerator.makeCards(images, 5, "#A7BD8B");</span> <br>
+                        <span>cardCycle.appendChild(cards);</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Make the Card Cycle Flippable -->
+        <div id="example2" class="examples">
+            <h2>Make a Card Cycle Flippable/Non-Flippable</h2>
+            <p>Each card can be flipped by enabling the flipping feature. Click on the button and hover over the card to see the hint message.</p>
+
+            <div class="example-holder">
+                <div id="cardCycle2"></div>
+                <div style="text-align: center; margin: 20px;">
+                    <button class="button tree-button" id="flip-cards-on">
+                        Enable Flip
+                    </button>
+                    <button class="button tree-button" id="flip-cards-off">
+                        Disable Flip
+                    </button>
+                </div>
+            </div>
+
+            <div class="codes-holder">
+                <div class="code-holder html-holder">
+                    <div class="code-title">HTML</div>
+                    <div class="code-content">
+                        <span>&ltdiv id="cardCycle"&gt &lt/div&gt</span><br>
+                        <span>&nbsp;&nbsp;&ltdiv style="text-align: center; margin: 20px;"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &ltbutton class="button tree-button" id="flip-cards-on"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Enable Flip</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &lt/button&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &ltbutton class="button tree-button" id="flip-cards-off"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Disable Flip</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &lt/button&gt</span><br>
+                        <span>&lt/div&gt</span>
+                    </div>
+                </div>
+                <div class="code-holder css-holder">
+                    <div class="code-title">CSS</div>
+                    <div class="code-content">
+                        <span>button {</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 20px;</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; border: none;</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; color: white;</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; padding: 15px 32px;</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; font-size: 16px;</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; margin: 4px 2px;</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; cursor: pointer;</span><br>
+                            <span>}</span><br><br>
+       
+                            <span>button:active {</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; box-shadow: inset 0px 0px 5px #e6e1e1;</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; outline: none;</span><br>
+                            <span>}</span><br><br>
+
+                            <span>.tree-button {</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; background-color: #A7BD8B;</span><br>
+                            <span>}</span><br><br>
+
+                            <span>.tree-button:hover {</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; background: #82a05b;</span><br>
+                            <span>}</span>
+                    </div>
+                </div>
+                <div class="code-holder js-holder">
+                    <div class="code-title">JS</div>
+                    <div class="code-content">
+                        <span>// Replace with your image links here </span><br>
+                        <span>const images = ["js/resources/pic1.jpg", 'js/resources/pic2.jpg', 'js/resources/pic3.jpg', 'js/resources/pic4.jpg',
+                        'js/resources/pic5.jpg']</span><br><br>
+                        <span>const cycleGenerator = new CyclitGenerator();</span><br>
+                        <span>const cardCycle = document.querySelector('#cardCycle');</span><br>
+                        <span>cards = cycleGenerator.makeCards(images, 5, "#A7BD8B");</span> <br>
+                        <span>cardCycle.appendChild(cards);</span><br><br>
+
+                        <span>// Add event listener for buttons</span><br>
+                        <span>const enableCardFlip = document.querySelector('#flip-cards-on');</span><br>
+                        <span>enableCardFlip.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Turn the flipping option of card cycle on</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.turnOnFlip(cards);</span><br>
+                        <span>})</span><br><br>
+                        <span>const disableCardFlip = document.querySelector('#flip-cards-off');</span><br>
+                        <span>disableCardFlip.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Turn the flipping option of card cycle off</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.turnOffFlip(cards);</span><br>
+                        <span>})</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flip all cards at once -->
+        <div id="example3" class="examples">
+            <h2>Flip all of the cards at once</h2>
+            <p>Cards can be flipped at once even though "flip" is not enable. Experience with buttons to see the different effects</p>
+
+            <div class="example-holder">
+                <div id="cardCycle3"></div>
+                <div style="text-align: center; margin: 20px;">
+                    <button class="button baby-button" id="flip-cards-on2">
+                        Enable Flip
+                    </button>
+                    <button class="button baby-button" id="flip-cards-off2">
+                        Disable Flip
+                    </button>
+                    <button class="button baby-button" id="flip-all-cards">
+                        Flip All
+                    </button>
+                </div>
+            </div>
+
+            <div class="codes-holder">
+                <div class="code-holder html-holder">
+                    <div class="code-title">HTML</div>
+                    <div class="code-content">
+                        <span>&ltdiv id="cardCycle"&gt &lt/div&gt</span><br>
+                        <span>&nbsp;&nbsp;&ltdiv style="text-align: center; margin: 20px;"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &ltbutton class="button baby-button" id="flip-cards-on"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Enable Flip</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &lt/button&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &ltbutton class="button baby-button" id="flip-cards-off"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Disable Flip</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &lt/button&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &ltbutton class="button baby-button" id="flip-all-cards"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Flip All</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &lt/button&gt</span><br>
+                        <span>&lt/div&gt</span>
+                    </div>
+                </div>
+                <div class="code-holder css-holder">
+                    <div class="code-title">CSS</div>
+                    <div class="code-content">
+                        <span>button {</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 20px;</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; border: none;</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; color: white;</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; padding: 15px 32px;</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; font-size: 16px;</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; margin: 4px 2px;</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; cursor: pointer;</span><br>
+                            <span>}</span><br><br>
+        
+                            <span>button:active {</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; box-shadow: inset 0px 0px 5px #e6e1e1;</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; outline: none;</span><br>
+                            <span>}</span><br><br>
+
+                            <span>.baby-button {</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; background-color: #FCBFA4;</span><br>
+                            <span>}</span><br><br>
+
+                            <span>.baby-button:hover {</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; background: #D76255;</span><br>
+                            <span>}</span>
+                    </div>
+                </div>
+                <div class="code-holder js-holder">
+                    <div class="code-title">JS</div>
+                    <div class="code-content">
+                        <span>// Replace with your image links here </span><br>
+                        <span>const images = ["js/resources/baby1.jpg", 'js/resources/baby2.png', 'js/resources/baby3.png', 'js/resources/baby4.png',
+                            'js/resources/baby5.png']</span><br><br>
+                        <span>const cycleGenerator = new CyclitGenerator();</span><br>
+                        <span>const cardCycle = document.querySelector('#cardCycle');</span><br>
+                        <span>cards = cycleGenerator.makeCards(images, 5, "#FCBFA4");</span> <br>
+                        <span>cardCycle.appendChild(cards);</span><br><br>
+
+                        <span>// Add event listener for buttons</span><br>
+                        <span>const enableCardFlip = document.querySelector('#flip-cards-on');</span><br>
+                        <span>enableCardFlip.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Turn the flipping option of card cycle on</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.turnOnFlip(cards);</span><br>
+                        <span>})</span><br><br>
+
+                        <span>const disableCardFlip = document.querySelector('#flip-cards-off');</span><br>
+                        <span>disableCardFlip.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Turn the flipping option of card cycle off</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.turnOffFlip(cards);</span><br>
+                        <span>})</span><br><br>
+
+                        <span>const flipCardsAll = document.querySelector('#flip-all-cards');</span><br>
+                        <span>flipCardsAll.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Turn the flipping option of card cycle off</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.flipAll(cards);</span><br>
+                        <span>})</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reset all cards to front face -->
+        <div id="example4" class="examples">
+            <h2>Reset all cards to the front face</h2>
+            <p>Cards can be reset to the front face regardless of the current flip. Experience with buttons to see the different effects</p>
+
+            <div class="example-holder">
+                <div id="cardCycle4"></div>
+                <div style="text-align: center; margin: 20px;">
+                    <button class="button baby-button" id="flip-cards-on3">
+                        Enable Flip
+                    </button>
+                    <button class="button baby-button" id="flip-cards-off3">
+                        Disable Flip
+                    </button>
+                    <button class="button baby-button" id="flip-all-cards2">
+                        Flip All
+                    </button>
+                    <button class="button baby-button" id="reset-cards">
+                        Reset
+                    </button>
+                </div>
+            </div>
+
+            <div class="codes-holder">
+                <div class="code-holder html-holder">
+                    <div class="code-title">HTML</div>
+                    <div class="code-content">
+                        <span>&ltdiv id="cardCycle"&gt &lt/div&gt</span><br>
+                        <span>&nbsp;&nbsp;&ltdiv style="text-align: center; margin: 20px;"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &ltbutton class="button baby-button" id="flip-cards-on"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Enable Flip</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &lt/button&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &ltbutton class="button baby-button" id="flip-cards-off"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Disable Flip</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &lt/button&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &ltbutton class="button baby-button" id="flip-all-cards"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Flip All</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &lt/button&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &ltbutton class="button baby-button" id="reset-cards"&gt</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reset</span><br>
+                        <span>&nbsp;&nbsp;&nbsp; &lt/button&gt</span><br>
+                        <span>&lt/div&gt</span>
+                    </div>
+                </div>
+                <div class="code-holder css-holder">
+                    <div class="code-title">CSS</div>
+                    <div class="code-content">
+                        <span>button {</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 20px;</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; border: none;</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; color: white;</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; padding: 15px 32px;</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; font-size: 16px;</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; margin: 4px 2px;</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; cursor: pointer;</span><br>
+                            <span>}</span><br><br>
+        
+                            <span>button:active {</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; box-shadow: inset 0px 0px 5px #e6e1e1;</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; outline: none;</span><br>
+                            <span>}</span><br><br>
+
+                            <span>.baby-button {</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; background-color: #FCBFA4;</span><br>
+                            <span>}</span><br><br>
+
+                            <span>.baby-button:hover {</span><br>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp; background: #D76255;</span><br>
+                            <span>}</span>
+                    </div>
+                </div>
+                <div class="code-holder js-holder">
+                    <div class="code-title">JS</div>
+                    <div class="code-content">
+                        <span>// Replace with your image links here </span><br>
+                        <span>const images = ["js/resources/baby1.jpg", 'js/resources/baby2.png', 'js/resources/baby3.png', 'js/resources/baby4.png',
+                            'js/resources/baby5.png']</span><br><br>
+                        <span>const cycleGenerator = new CyclitGenerator();</span><br>
+                        <span>const cardCycle = document.querySelector('#cardCycle');</span><br>
+                        <span>cards = cycleGenerator.makeCards(images, 5, "#FCBFA4");</span> <br>
+                        <span>cardCycle.appendChild(cards);</span><br><br>
+
+                        <span>// Add event listener for buttons</span><br>
+                        <span>const enableCardFlip = document.querySelector('#flip-cards-on');</span><br>
+                        <span>enableCardFlip.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Turn the flipping option of card cycle on</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.turnOnFlip(cards);</span><br>
+                        <span>})</span><br><br>
+
+                        <span>const disableCardFlip = document.querySelector('#flip-cards-off');</span><br>
+                        <span>disableCardFlip.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Turn the flipping option of card cycle off</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.turnOffFlip(cards);</span><br>
+                        <span>})</span><br><br>
+
+                        <span>const flipCardsAll = document.querySelector('#flip-all-cards');</span><br>
+                        <span>flipCardsAll.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Turn the flipping option of card cycle off</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.flipAll(cards);</span><br>
+                        <span>})</span><br><br>
+
+                        <span>const resetCardsAll = document.querySelector('#reset-cards');</span><br>
+                        <span>resetCardsAll.addEventListener('click', function(){</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; // Turn the flipping option of card cycle off</span><br>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp; cycleGenerator.resetAll(cards);</span><br>
+                        <span>})</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+ </body>
+
+</html>

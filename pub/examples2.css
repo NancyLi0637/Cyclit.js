@@ -1,0 +1,107 @@
+/* Style for Header and Title */
+body {
+    margin: 0;
+}
+
+.header {
+    overflow: hidden;
+    background: #383333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    color: #e6e1e1;
+    z-index: 9999;
+}
+
+.header h2{
+   margin-left: 10%;
+   font-size: 30px;
+}
+
+.main {
+    padding: 16px;
+    margin-top: 100px;
+    margin-left: 9%;
+}
+
+.main h1{
+    font-size: 50px;
+    color: #383333;
+}
+
+/* Style for Exampes */
+.examples {
+    margin-top: 70px;
+}
+
+.examples h2 {
+    font-size: 30px;
+}
+
+.example-holder {
+    border: 2px solid #383333;
+}
+
+.codes-holder {
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    background-color: rgb(202, 199, 199);
+}
+
+.code-holder {
+    border: 1px solid white;
+}
+
+.html-holder {
+    width: 33%;
+}
+
+.css-holder {
+    width: 27%;
+}
+
+.js-holder {
+    width: 40%;
+}
+
+.code-title{
+    text-align: center;
+    background-color: rgb(161, 160, 160);
+    color: white;
+}
+
+.code-content {
+    margin: 20px;
+}
+
+button {
+    border-radius: 20px;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+button:active {
+    box-shadow: inset 0px 0px 5px #e6e1e1;
+    outline: none;
+}
+
+.tree-button {
+    background-color: #A7BD8B;
+}
+
+.tree-button:hover {
+    background: #82a05b;
+}
+
+.baby-button {
+    background: #FCBFA4;
+}
+
+.baby-button:hover {
+    background: #D76255;
+}
