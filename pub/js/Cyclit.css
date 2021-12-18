@@ -252,7 +252,6 @@
     transition: transform 1s;
     transform-style: preserve-3d;
     cursor: pointer;
-    background: #A7BD8B;
 }
 
 .frame.is-flipped {
@@ -268,7 +267,6 @@
 }
 
 .frame-face-back {
-    background: #A7BD8B;
     transform: rotateY( 180deg );
     display: flex;
     justify-content: center;
@@ -284,7 +282,8 @@
 }
 
 .img-frame {
-    margin-top: 5px;
+    width: 100%;
+    height: 100%;
 }
 
 .content-holder {

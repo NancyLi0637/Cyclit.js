@@ -11,6 +11,7 @@
         this.carouselCells = []   // Carousel Cycle
 
         this.cardsHolder = null;
+        this.pageHolder = null;
     }
 
     CyclitGenerator.prototype = {
@@ -34,7 +35,7 @@
                 }
             }
             else if(e.classList.contains('page-holder')){
-                _flipFramesOn(this.frames);
+                _flipFramesOn(this.frames, this.pageHolder);
                 for(let i = 0; i < this.frames.length; i++){
                     this.frames[i].flippable = true;
                 }
@@ -50,7 +51,7 @@
                 }
             }
             else if(e.classList.contains('page-holder')){
-                _flipFramesOff(this.frames);
+                _flipFramesOff(this.frames, this.pageHolder);
                 for(let i = 0; i < this.frames.length; i++){
                     this.frames[i].flippable = false;
                 }
@@ -62,7 +63,7 @@
             if(e.classList.contains('default-cards-holder')){
                 _flipAllCards(this.cards, this.cardsHolder);
             }else if(e.classList.contains('page-holder')){
-                _flipAllFrames(this.frames);
+                _flipAllFrames(this.frames, this.pageHolder);
             }
         },
 
@@ -71,7 +72,7 @@
             if(e.classList.contains('default-cards-holder')){
                 _resetCards(this.cards, this.cardsHolder);
             }else if(e.classList.contains('page-holder')){
-                _resetFrames(this.frames);
+                _resetFrames(this.frames, this.pageHolder);
             }
         },
 
@@ -105,12 +106,13 @@
         },
 
         /* Make a Frame Cycle */
-        makeFrames: function(images, n, titles, contents){
+        makeFrames: function(images, n, backColor, titles, contents){
             for(let i = 0; i < n; i++){
-                const newFrame = new Frame(images[i], titles[i], contents[i]);
+                const newFrame = new Frame(images[i], backColor, titles[i], contents[i]);
                 this.frames.push(newFrame)
             }
-            return _createFrames(this.frames);
+            this.pageHolder = _createFrames(this.frames);
+            return this.pageHolder;
         },
 
         /* Make a Cube Cycle */
@@ -188,8 +190,9 @@
     }
 
     class Frame {
-        constructor(cover, title, content) {
+        constructor(cover, back, title, content) {
             this.cover = cover;
+            this.back = back;
             this.title = title;
             this.content = content;
             this.flippable = false;
@@ -435,7 +438,6 @@
     /* Create a Frame Cycle */
     function _createFrames(frames){
         const pageHolder = document.createElement('div');
-        pageHolder.id = 'page-holder';
         pageHolder.className = 'page-holder';
 
         let track = 0;
@@ -461,7 +463,9 @@
                 frameFront.className = 'frame-face';
                 title.className = 'title-frame';
                 frameBack.className = 'frame-face frame-face-back';
+                frameBack.style.background = frames[track].back;
                 frame.className = 'frame';
+                frame.style.background = frames[track].back;
                 frameHolder.className = 'frame-holder'
 
                 imgHolder.appendChild(img);
@@ -486,12 +490,10 @@
     }
 
     /* Turn the flipping option of frame cycle on */
-    function _flipFramesOn(frames) {
+    function _flipFramesOn(frames, pageHolder) {
         if(frames[0].flippable){
             return;
         }
-
-        const pageHolder = document.querySelector('#page-holder');
 
         for(let i = 0; i < frames.length; i++){
             let frameHolder;
@@ -528,12 +530,10 @@
     }
 
     /* Turn the flipping option of frames off */
-    function _flipFramesOff(frames) {
+    function _flipFramesOff(frames, pageHolder) {
         if(!frames[0].flippable) {
             return;
         }
-
-        const pageHolder = document.querySelector('#page-holder');
 
         for(let i = 0; i < frames.length; i++){
             let frameHolder;
@@ -562,9 +562,7 @@
     }
 
     /* Flip all the frames at once */
-    function _flipAllFrames(frames) {
-
-        const pageHolder = document.querySelector('#page-holder');
+    function _flipAllFrames(frames, pageHolder) {
 
         for(let i = 0; i < frames.length; i++){
             let frameHolder;
@@ -581,9 +579,7 @@
     }
 
     /* Reset all flipped frames to frame front */
-    function _resetFrames(frames) {
-
-        const pageHolder = document.querySelector('#page-holder');
+    function _resetFrames(frames, pageHolder) {
 
         for(let i = 0; i < frames.length; i++){
             let frameHolder;
