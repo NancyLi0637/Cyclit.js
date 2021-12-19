@@ -44,10 +44,12 @@ html, body {
 .api-button {
     border-color: #E2E0E0 transparent #E2E0E0 #E2E0E0;
     color: #E2E0E0;
+    display: block;
 }
 
 .examples-button {
     border-color: #383333 transparent #383333 #383333;
+    display: block;
 }
 
 .title {
