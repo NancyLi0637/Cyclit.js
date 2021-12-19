@@ -3,7 +3,8 @@
 ///////////////////////////////////// Card Cycle Examples ////////////////////////////////////
 
 ///// Example 1: Create a Card Cycle /////
-const images = ["js/resources/pic1.jpg", 'js/resources/pic2.jpg', 'js/resources/pic3.jpg', 'js/resources/pic4.jpg', 'js/resources/pic5.jpg']
+const images = ["js/resources/card_tree/tree1.jpg", 'js/resources/card_tree/tree2.jpg', 'js/resources/card_tree/tree3.jpg', 
+'js/resources/card_tree/tree4.jpg', 'js/resources/card_tree/tree5.jpg']
 
 const cycleGenerator = new CyclitGenerator();
 
@@ -32,8 +33,8 @@ disableCardFlip.addEventListener('click', function(){
 })
 
 ///// Example 3: Flip all the cards at once /////
-const images2 = ["js/resources/baby1.jpg", 'js/resources/baby2.png', 'js/resources/baby3.png', 'js/resources/baby4.png',
-    'js/resources/baby5.png']
+const images2 = ["js/resources/card_baby/baby1.jpg", 'js/resources/card_baby/baby2.png', 'js/resources/card_baby/baby3.png', 
+'js/resources/card_baby/baby4.png', 'js/resources/card_baby/baby5.png']
 
 const cycleGenerator3 = new CyclitGenerator();
 
@@ -95,8 +96,9 @@ resetCardsAll.addEventListener('click', function(){
 ///////////////////////////////////// Timeline Cycle Examples ////////////////////////////////////
 
 ///// Example 5: Createa a Timeline Cycle /////
-const images3 = ["js/resources/exercise.jpg", 'js/resources/exercise.jpg', 'js/resources/group.jpg', 'js/resources/individual.jpg',
-'js/resources/group.jpg', 'js/resources/exercise.jpg', 'js/resources/individual.jpg', 'js/resources/exercise.jpg', 'js/resources/group.jpg', 'js/resources/individual.jpg']
+const images3 = ["js/resources/timeline_hw/exercise.jpg", 'js/resources/timeline_hw/exercise.jpg', 'js/resources/timeline_hw/group.jpg', 'js/resources/timeline_hw/individual.jpg',
+'js/resources/timeline_hw/group.jpg', 'js/resources/timeline_hw/exercise.jpg', 'js/resources/timeline_hw/individual.jpg', 'js/resources/timeline_hw/exercise.jpg', 
+'js/resources/timeline_hw/group.jpg', 'js/resources/timeline_hw/individual.jpg']
 const timelineTitles = ["Exercise 1", "Exercise 2", "Group Proposal", "Individual Proposal", "Phase 1", "Exercise 3", 
 "Alpha Release", "Exercise 4", "Phase 2", "Final Submission"]
 const timelineContents = []
@@ -135,7 +137,7 @@ disableTimelineHover.addEventListener('click', function(){
 ///////////////////////////////////// Frame Cycle Examples ////////////////////////////////////
 
 ///// Example 7: Create a Frame-Cycle /////
-const images4 = ["js/resources/story1.jpg", 'js/resources/story2.jpg', 'js/resources/story3.jpg', 'js/resources/story4.jpg']
+const images4 = ["js/resources/frame_story/story1.jpg", 'js/resources/frame_story/story2.jpg', 'js/resources/frame_story/story3.jpg', 'js/resources/frame_story/story4.jpg']
 const frameTitles = ['Chapter 1', "Chapter 2", "Chapter 3", "Chapter 4"]
 const frameContents = []
 
@@ -185,8 +187,8 @@ resetFramesAll.addEventListener('click', function(){
 ///////////////////////////////////// Cube Cycle Examples ////////////////////////////////////
 
 ///// Example 9: Create a Cube Cycle /////
-const images5 = ["js/resources/player1.jpg", 'js/resources/player2.jpg', 'js/resources/player3.jpg', 'js/resources/player4.jpg', 
-'js/resources/player5.jpg', 'js/resources/player6.jpg']
+const images5 = ["js/resources/cube_player/player1.jpg", 'js/resources/cube_player//player2.jpg', 'js/resources/cube_player/player3.jpg', 
+'js/resources/cube_player/player4.jpg', 'js/resources/cube_player/player5.jpg', 'js/resources/cube_player/player6.jpg']
 const cubeContents = []
 
 function createCubeContents(){
@@ -246,8 +248,9 @@ button6.addEventListener('click', function(){
 ///////////////////////////////////// Carousel Cycle Examples ////////////////////////////////////
 
 ///// Example 11: Create a Carousel Cycle /////
-const images6 = ["js/resources/get_up.jpg", 'js/resources/breakfast.jpg', 'js/resources/go_to_work.jpg', 'js/resources/lunch.jpg', 
-'js/resources/work.jpg', 'js/resources/go_to_work.jpg', 'js/resources/dinner.jpg', 'js/resources/tv.jpg', 'js/resources/shower.jpg', 'js/resources/sleep.jpg']
+const images6 = ["js/resources/carousel_schedule/get_up.jpg", 'js/resources/carousel_schedule/breakfast.jpg', 'js/resources/carousel_schedule/go_to_work.jpg', 
+'js/resources/carousel_schedule/lunch.jpg', 'js/resources/carousel_schedule/work.jpg', 'js/resources/carousel_schedule/go_to_work.jpg', 'js/resources/carousel_schedule/dinner.jpg', 
+'js/resources/carousel_schedule/tv.jpg', 'js/resources/carousel_schedule/shower.jpg', 'js/resources/carousel_schedule/sleep.jpg']
 const carouselTitles = ["7:00", "8:00", "9:00", "12:00", "14:00", "17:00", "18:30", "20:00", "22:00", "23:30"]
 
 const carouselCycle = document.querySelector('#carouselCycle');
