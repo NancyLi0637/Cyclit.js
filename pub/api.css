@@ -1,0 +1,115 @@
+body {
+    margin: 0;
+}
+
+.header {
+    overflow: hidden;
+    background: #383333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    color: #e6e1e1;
+    z-index: 9999;
+}
+
+.header h2{
+margin-left: 5%;
+font-size: 30px;
+}
+
+.main {
+    padding: 16px;
+    margin-top: 100px;
+    margin-left: 4%;
+}
+
+.main h2 {
+    font-size: 30px;
+}
+
+
+.main h3 {
+    font-size: 25px;
+}
+
+.main-title{
+    font-size: 50px;
+    color: #383333;
+}
+
+.start-section {
+    margin-top: 70px;
+    background: #f5f2f0;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+
+.start-section span{
+    font-size: 17px;
+}
+
+.start-section p{
+    font-size: 17px;
+}
+
+code {
+    background-color: rgb(219, 215, 215);
+    border-radius: 3px;
+    font-family: courier, monospace;
+    padding: 0 3px;
+}
+
+.connect-holder {
+    margin-top: 10px;
+}
+
+.connect-holder img{
+    height: 100px;
+}
+
+.methods-section {
+    background: #f5f2f0;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.method-holder img{
+    max-width: 100%;
+}
+
+.method-name {
+    font-style: oblique;
+    font-size: 20px;
+    color: rgb(71, 71, 71);
+}
+
+.attribute-holder {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 5px;
+}
+
+.attribute-holder code {
+    background: white;
+    margin: 3px;
+}
+
+.common-holder code {
+    background: #f5f2f0;
+    font-family: sans-serif;
+}
+
+.parameters {
+    display: flex;
+    flex-direction: row;
+}
+
+.method-divider{
+    width: 100%;
+    height: 1px;
+    background: grey;
+    margin-top: 20px;
+}
+

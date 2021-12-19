@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+ 	<meta charset="utf-8">
+    <title>API | Cyclit.js</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="api.css">
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+ </head>
+ <body>
+
+    <div class="header">
+        <h2><a href="/" style="text-decoration: none; color: inherit;">Cyclit.js</a></h2>
+    </div>
+
+    <div class="main">
+        <h1 class="main-title">API</h1>
+
+        <div class="start-section">
+            <h2>Getting Started</h2>
+            <span>A quick start guide for using Cyclit.js.</span><br>
+            <span style="font-style: Italic;">Note: This library is intended for Vanilla JS.</span>
+
+            <h3 style="font-style: bold;">Setting Up</h3>
+            <span>To use this library, simply include "Cyclit.js" and "Cyclit.css" in your HTML file.</span><br>
+            <span>If you don't have jQuery as one of your scripts, include jQuery as well.</span>
+
+            <div style="margin-top: 10px;">
+                <img src="js/resources/api/script.png" alt="Loading image..."/>
+            </div>
+
+            <span>In order to access the functionalities in this library, always start by initiating a <code>CyclitGenerator</code>.</span>
+
+            <div style="margin-top: 10px;">
+                <img src="js/resources/api/cyclitgenerator.png" alt="Loading image..."/>
+            </div>
+            
+            <br><br>
+
+            <span>
+                Cyclit.js is a library that provides 5 different types of pre-made cycle graphs where each type supports different combinations
+                of information format. 
+            </span><br>
+            <span>
+                Each CyclitGenerator can create one Card Cycle, one Timeline Cycle, one Frame Cycle, one Cube Cycle, and one Carousel Cycle. 
+                The instructions on the usage will be included in the Methods Section.
+            </span>
+
+            <br><br>
+
+            <span>
+                To test that the library is succesfully included, call the <code>connect()</code> function in your own javascript file and check the correct output
+                is printed in the console.
+            </span>
+            <div class="connect-holder">
+                <img src="js/resources/api/connect.png" alt="Loading image..."/>
+                <img src="js/resources/api/console.png" alt="Loading image..."/>
+            </div>
+
+            <br><br>
+
+            <h2>Basic Usage</h2>
+            <span>
+                There are only two types of methods in this library - one type is to directly create one of the five cycles with given parameters, and another type is
+                methods that relate to each type of cycle.
+            </span><br>
+            <span>
+                Both of these two types are extremely easy to use. The first type of methods creates 'JS Objects' that are stored in the CyclitGenerator, and will return the 
+                uppermost element which can be directly appended to one of your HTML elements. The second type of methods simply take the element returned by the first type of
+                method and perform DOM manipulation on it.
+            </span>
+        </div>
+
+        <div style="width: 100%; height: 100px;"></div>
+
+        <div class="methods-section">
+            <h2>Methods</h2>
+            <h3>Create Cycles</h3>
+            <p>These methods directly return an HTML element, which can be appended to your existing element.</p>
+
+            <div class="method-divider"></div>
+            
+            <div class="method-holder">
+                <p class="method-name"><strong>.makeCards(images, length, backColor)</strong></p>
+                <span><b>Description:</b>Create a Card Cycle with <code>length</code> elements. Each element is flippable if enabled.</span><br>
+                <span><b>Requirement: </b>1&lt=<code> length </code>&lt=6</span><br>
+                <span><b>Return Value: </b>A <code>div</code> element containing a Card Cycle</span><br><br>
+    
+                <div class="parameters">
+                    <div class="attribute-holder">
+                        <b>Parameter</b>
+                        <code>images</code>
+                        <code>length</code>
+                        <code>backColor</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Type</b>
+                        <code>list of String</code>
+                        <code>integer</code>
+                        <code>color code as String</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Description</b>
+                        <code>Used as the front face of the cards</code>
+                        <code>The number of elements in a cycle</code>
+                        <code>Used as the back face of the cards</code>
+                    </div>
+                </div>
+    
+                <b>Usage: </b><br>
+                <img src="js/resources/api/cardCycle.png"/>
+            </div>
+
+            <div class="method-divider"></div>
+
+            <div class="method-holder">
+                <p class="method-name"><strong>.makeTimeline(images, length, titles, contents)</strong></p>
+                <span><b>Description:</b>Create a Timeline Cycle with <code>length</code> elements. Each element is hoverable if enabled.</span><br>
+                <span><b>Requirement: </b>1&lt=<code> length </code></span><br>
+                <span><b>Return Value: </b>A <code>div</code> element containing a Timeline Cycle</span><br><br>
+                
+    
+                <div class="parameters">
+                    <div class="attribute-holder">
+                        <b>Parameter</b>
+                        <code>images</code>
+                        <code>length</code>
+                        <code>titles</code>
+                        <code>contents</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Type</b>
+                        <code>list of String</code>
+                        <code>integer</code>
+                        <code>list of String with limited length</code>
+                        <code>list of String</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Description</b>
+                        <code>Displayed as one container along the timeline</code>
+                        <code>The number of elements in a cycle</code>
+                        <code>The titles of each cycle element</code>
+                        <code>The description of each cycle element</code>
+                    </div>
+                </div>
+    
+                <b>Usage: </b><br>
+                <img src="js/resources/api/timelineCycle.png"/>
+    
+            </div>
+
+            <div class="method-divider"></div>
+
+            <div class="method-holder">
+                <p class="method-name"><strong>.makeFrames(images, length, backColor, titles, contents)</strong></p>
+                <span><b>Description:</b>Create a Frame Cycle with <code>length</code> elements. Each element is flippable if enabled.</span><br>
+                <span><b>Requirement: </b>1&lt=<code> length </code></span><br>
+                <span><b>Return Value: </b>A <code>div</code> element containing a Frame Cycle</span><br><br>
+                
+    
+                <div class="parameters">
+                    <div class="attribute-holder">
+                        <b>Parameter</b>
+                        <code>images</code>
+                        <code>length</code>
+                        <code>backColor</code>
+                        <code>titles</code>
+                        <code>contents</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Type</b>
+                        <code>list of String</code>
+                        <code>integer</code>
+                        <code>color code as String</code>
+                        <code>list of String with limited length</code>
+                        <code>list of String</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Description</b>
+                        <code>Used as the front face of the frames</code>
+                        <code>The number of elements in a cycle</code>
+                        <code>Used as the back face of the frames</code>
+                        <code>The titles of each cycle element</code>
+                        <code>The description of each cycle element</code>
+                    </div>
+                </div>
+    
+                <b>Usage: </b><br>
+                <img src="js/resources/api/frameCycle.png"/>
+            </div>
+            
+            <div class="method-divider"></div>
+
+            <div class="method-holder">
+                <p class="method-name"><strong>.makeCube(images, length, contents)</strong></p>
+                <span><b>Description:</b>Create a Cube Cycle with <code>length</code> elements. The color of the faces are preset and each face is hoverable. 
+                The cube is rotatable by calling corresponding functions.</span><br>
+                <span><b>Requirement: </b>1&lt=<code> length </code>&lt=6</span><br>
+                <span><b>Return Value: </b>A <code>div</code> element containing a Cube Cycle</span><br><br>
+                
+    
+                <div class="parameters">
+                    <div class="attribute-holder">
+                        <b>Parameter</b>
+                        <code>images</code>
+                        <code>length</code>
+                        <code>contents</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Type</b>
+                        <code>list of String</code>
+                        <code>integer</code>
+                        <code>list of String</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Description</b>
+                        <code>Used as the hovered face of the cube faces</code>
+                        <code>The number of elements in a cycle</code>
+                        <code>The description of each cycle element</code>
+                    </div>
+                </div>
+    
+                <b>Usage: </b><br>
+                <img src="js/resources/api/cubeCycle.png"/>
+            </div>
+
+            <div class="method-divider"></div>
+
+            <div class="method-holder">
+                <p class="method-name"><strong>.makeCarousel(images, length, backColor, titles)</strong></p>
+                <span><b>Description:</b>Create a Carousel Cycle with <code>length</code> elements. Each element is flippable. The carousel can be rotated horizontally
+                    by calling corresponding functions.</span><br>
+                <span><b>Requirement: </b>1&lt=<code> length </code>&lt=15</span><br>
+                <span><b>Return Value: </b>A <code>div</code> element containing a Carousel Cycle</span><br><br>
+                
+    
+                <div class="parameters">
+                    <div class="attribute-holder">
+                        <b>Parameter</b>
+                        <code>images</code>
+                        <code>length</code>
+                        <code>backColor</code>
+                        <code>titles (optional)</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Type</b>
+                        <code>list of String</code>
+                        <code>integer</code>
+                        <code>color code as String</code>
+                        <code>list of String/list of Integer index</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Description</b>
+                        <code>Used as the front face of the cells</code>
+                        <code>The number of elements in a cycle</code>
+                        <code>Used as the back face of the cells</code>
+                        <code>The titles of each cycle element</code>
+                    </div>
+                </div>
+    
+                <b>Usage: </b><br>
+                <img src="js/resources/api/carouselCycle.png"/>
+            </div>
+
+            <div class="method-divider"></div>
+
+            <h3>Interact with Cycles</h3>
+            <p>These methods do not return anything. They are called to allow users to interact with the cycles through cycle elements or developer-created buttons.</p>
+
+            <div class="method-divider"></div>
+
+            <div class="method-holder">
+                <p class="method-name"><strong>.turnOnFlip(cycleElements)</strong></p>
+                <span><b>Requirement: </b><code> cycleElements </code>is from a Card Cycle or a Frame Cycle.</span><br>
+    
+                <div class="parameters">
+                    <div class="attribute-holder">
+                        <b>Parameter</b>
+                        <code>cycleElements</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Type</b>
+                        <code>Card/Frame</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Description</b>
+                        <code>Allow each individual card/frame to be flipped once enabled</code>
+                    </div>
+                </div>
+    
+                <b>Usage: </b><br>
+                <img src="js/resources/api/cardenable.png"/>
+            </div>
+
+            <div class="method-divider"></div>
+
+            <div class="method-holder">
+                <p class="method-name"><strong>.turnOffFlip(cycleElements)</strong></p>
+                <span><b>Requirement: </b><code> cycleElements </code>is from a Card Cycle or a Frame Cycle.</span><br>
+    
+                <div class="parameters">
+                    <div class="attribute-holder">
+                        <b>Parameter</b>
+                        <code>cycleElements</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Type</b>
+                        <code>Card/Frame</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Description</b>
+                        <code>Disallow each individual card/frame to be flipped once enabled</code>
+                    </div>
+                </div>
+    
+                <b>Usage: </b><br>
+                <img src="js/resources/api/framedisable.png"/>
+            </div>
+
+            <div class="method-divider"></div>
+
+            <div class="method-holder">
+                <p class="method-name"><strong>.flipAll(cycleElements)</strong></p>
+                <span><b>Requirement: </b><code> cycleElements </code>is from a Card Cycle or a Frame Cycle.</span><br>
+    
+                <div class="parameters">
+                    <div class="attribute-holder">
+                        <b>Parameter</b>
+                        <code>cycleElements</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Type</b>
+                        <code>Card/Frame</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Description</b>
+                        <code>Flip all cards/frames at once</code>
+                    </div>
+                </div>
+    
+                <b>Usage: </b><br>
+                <img src="js/resources/api/cardflipall.png"/>
+            </div>
+
+            <div class="method-divider"></div>
+
+            <div class="method-holder">
+                <p class="method-name"><strong>.resetAll(cycleElements)</strong></p>
+                <span><b>Requirement: </b><code> cycleElements </code>is from a Card Cycle or a Frame Cycle.</span><br>
+    
+                <div class="parameters">
+                    <div class="attribute-holder">
+                        <b>Parameter</b>
+                        <code>cycleElements</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Type</b>
+                        <code>Card/Frame</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Description</b>
+                        <code>Reset all cards/frames to be the front face</code>
+                    </div>
+                </div>
+    
+                <b>Usage: </b><br>
+                <img src="js/resources/api/frameresetall.png"/>
+            </div>
+
+            <div class="method-divider"></div>
+
+            <div class="method-holder">
+                <p class="method-name"><strong>.turnOnHover(cycleElements)</strong></p>
+                <span><b>Requirement: </b><code> cycleElements </code>is from a Timeline Cycle.</span><br>
+    
+                <div class="parameters">
+                    <div class="attribute-holder">
+                        <b>Parameter</b>
+                        <code>cycleElements</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Type</b>
+                        <code>Timeline</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Description</b>
+                        <code>Allow each individual section to be hovered on</code>
+                    </div>
+                </div>
+    
+                <b>Usage: </b><br>
+                <img src="js/resources/api/sectionhover.png"/>
+            </div>
+
+            <div class="method-divider"></div>
+
+            <div class="method-holder">
+                <p class="method-name"><strong>.turnOffHover(cycleElements)</strong></p>
+                <span><b>Requirement: </b><code> cycleElements </code>is from a Timeline Cycle.</span><br>
+    
+                <div class="parameters">
+                    <div class="attribute-holder">
+                        <b>Parameter</b>
+                        <code>cycleElements</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Type</b>
+                        <code>Timeline</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Description</b>
+                        <code>Disallow each individual section to be hovered on</code>
+                    </div>
+                </div>
+    
+                <b>Usage: </b><br>
+                <img src="js/resources/api/sectionnothover.png"/>
+            </div>
+
+            <div class="method-divider"></div>
+
+            <div class="method-holder">
+                <p class="method-name"><strong>.rotateCube(cycleElements, destinationFace)</strong></p>
+                <span><b>Requirement: </b><code> cycleElements </code>is from a Cube Cycle;  1&lt= <code> destinationFace </code>&gt=6 </span><br>
+    
+                <div class="parameters">
+                    <div class="attribute-holder">
+                        <b>Parameter</b>
+                        <code>cycleElements</code>
+                        <code>destinationFace</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Type</b>
+                        <code>Cube</code>
+                        <code>Integer</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Description</b>
+                        <code>Allow the user to rotate to the destination cube face.</code>
+                        <code>The numbered destination face rotate to</code>
+                    </div>
+                </div>
+    
+                <b>Usage: </b><br>
+                <img src="js/resources/api/cuberotate1.png"/>
+                <img src="js/resources/api/cuberotate5.png"/>
+            </div>
+
+            <div class="method-divider"></div>
+
+            <div class="method-holder">
+                <p class="method-name"><strong>.previousCarousel(cycleElements)</strong></p>
+                <span><b>Requirement: </b><code> cycleElements </code>is from a Carousel Cycle</span><br>
+    
+                <div class="parameters">
+                    <div class="attribute-holder">
+                        <b>Parameter</b>
+                        <code>cycleElements</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Type</b>
+                        <code>Carousel</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Description</b>
+                        <code>Allow the user to rotate left to the destination carousel face</code>
+                    </div>
+                </div>
+    
+                <b>Usage: </b><br>
+                <img src="js/resources/api/previouscarousel.png"/>
+            </div>
+
+            <div class="method-divider"></div>
+
+            <div class="method-holder">
+                <p class="method-name"><strong>.nextCarousel(cycleElements)</strong></p>
+                <span><b>Requirement: </b><code> cycleElements </code>is from a Carousel Cycle</span><br>
+    
+                <div class="parameters">
+                    <div class="attribute-holder">
+                        <b>Parameter</b>
+                        <code>cycleElements</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Type</b>
+                        <code>Carousel</code>
+                    </div>
+                    <div class="attribute-holder common-holder">
+                        <b>Description</b>
+                        <code>Allow the user to rotate left to the destination carousel face.</code>
+                    </div>
+                </div>
+    
+                <b>Usage: </b><br>
+                <img src="js/resources/api/nextcarousel.png"/>
+            </div>
+
+
+        </div>
+
+    </div>
+
+ </body>
+
+</html>
