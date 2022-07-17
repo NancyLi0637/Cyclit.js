@@ -24,11 +24,8 @@ html, body {
     height: 25%;
     right: 0;
     top: 37.5%;
-    border-width: 4px;
+    border-width: thick;
     border-style: solid; 
-    text-align: center;
-
-    font-size: 30px;
 }
 
 .button-holder:hover {
@@ -41,21 +38,36 @@ html, body {
     outline: none;
 }
 
+.examples-button {
+    border-color: #383333 transparent #383333 #383333;
+    display: block;
+}
+
 .api-button {
     border-color: #E2E0E0 transparent #E2E0E0 #E2E0E0;
     color: #E2E0E0;
     display: block;
 }
 
-.examples-button {
-    border-color: #383333 transparent #383333 #383333;
-    display: block;
+.button-holder p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    font-size: 30px;
 }
 
 .title {
-    position: absolute;
-    left: 25%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
     z-index: 9;
+
+    height: 800px;
 }
 
 .description {
