@@ -152,4 +152,8 @@ button:active {
     background: #e0c788;
 }
 
-
+.copyright {
+    color: grey;
+    text-align: center;
+    margin-bottom: 5px;
+}
