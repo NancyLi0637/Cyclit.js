@@ -1,5 +1,5 @@
 # Cyclit.js
-https://cyclit-library.herokuapp.com/
+https://cyclit-library-a7e6823ee703.herokuapp.com/
 
 ## Description 
 The purpose of this library is to allow developers to provide information specifically on a cycle for anything, 
